@@ -325,7 +325,7 @@ const FormExample = () => {
               <br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <label htmlFor="Name"><b>Name:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Name"><b>Namee:</b></label> &nbsp;&nbsp;
 
                 <TextField
 

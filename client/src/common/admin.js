@@ -2,7 +2,7 @@ import { Dropdown, Menu, Table } from "antd";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { TextField } from '@material-ui/core';
+import { Card, TextField } from '@material-ui/core';
 import axios from 'axios';
 import { Typography } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button'
 import Drawer from "./drawer";
 import { RWebShare } from "react-web-share";
+import { Box, CardContent, Grid } from "@mui/material";
 
 //for developement
 // const BASEURL = "http://localhost:5000/api"
@@ -24,13 +25,18 @@ function CustomTable({ data }) {
 
   const columns = [
     {
-      title: "Receipt No.",
+      title: "Date",
+      dataIndex: "createdAt",
+      key: "receiptNumber"
+    },
+    {
+      title: "LR No.",
       dataIndex: "receiptNumber",
       key: "receiptNumber"
     },
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "Name of Dealer",
+      dataIndex: "vendor_name",
       key: "name",
     },
     {
@@ -41,21 +47,64 @@ function CustomTable({ data }) {
     },
     {
 
-      title: "Phone Number",
+      title: "Sub Dealer",
 
-      dataIndex: "phone",
+      dataIndex: "supplier_name",
 
       key: "phone",
 
       responsive: ["md"]
 
     },
+   
     {
-      title: "Amount",
-      dataIndex: "amount",
+      title: "Place",
+      dataIndex: "ship_to_address1",
+      key: "name",
+    },
+    {
+      title: "District",
+      dataIndex: "ship_to_district",
+      key: "name",
+    },
+    {
+      title: "Driver Name",
+      dataIndex: "transport_driver_name",
+      key: "name",
+    },
+    
+    {
+      title: "Truck No.",
+      dataIndex: "transport_number",
+      key: "name",
+    },
+   
+    {
+      title: "Product",
+      dataIndex: "product_name",
+      key: "name",
+    },
+    {
+      title: "Code",
+      dataIndex: "product_code",
+      key: "name",
+    },
+   
+    {
+      title: "Total Freight",
+      dataIndex: "total_freight",
       key: "amount"
     },
-
+    {
+      title: "Advance",
+      dataIndex: "advance_paid",
+      key: "name",
+    },
+    {
+      title: "To Pay",
+      dataIndex: "to_pay",
+      key: "name",
+    },
     {
       title: "Receipt",
       dataIndex: "receipt",
@@ -163,9 +212,19 @@ const FormExampleAdmin = () => {
   const [value, setValue] = useState({})
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    amount: ""
+    vendor_name: "sfs",
+    address: "ffd",
+    supplier_name: "fdf",
+    ship_to_address1: "fdf",
+    ship_to_district: "sds",
+    transport_mode: "3",
+    transport_number: "34",
+    transport_driver_name: "dfd",
+    product_name: "dsd",
+    product_code: "455",
+    total_freight: "54",
+    advance_paid: "345",
+    to_pay: "445",
   })
   const handleonchange = (e) => {
     // console.log(e);
@@ -203,61 +262,49 @@ const FormExampleAdmin = () => {
     }
 
   }, []);
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const form = {
-  //     name: formData.name,
-  //     address: formData.address,
-  //     amount: formData.amount,
-  //     group_id: params.id,
-  //     receiver: value.name,
-  //     phone: formData.phone
-  //   };
-  //   setFormData({
-  //     name: "",
-  //     address: "",
-  //     amount: "",
-  //     group_id: "",
-  //     phone: ""
-  //   })
-
-  //   const first = () => {
-  //     // console.log(form);
-  //     return axios
-  //       .post("http://localhost:5000/api/submit", form)
-  //       .then((response) => {
-  //         getallusers()
-  //         return response;
-  //       }
-  //       )
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-
-  //   }
-  //   first();
-
-  // }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const form = {
-      name: formData.name,
+      vendor_name: formData.vendor_name,
       address: formData.address,
-      amount: formData.amount,
+      supplier_name: formData.supplier_name,
       group_id: params.id,
-      receiver: value.name,
-      phone: formData.phone
+      receiver: value.receiver,
+      // phone: formData.phone,
+      ship_to_address1: formData.ship_to_address1,
+      ship_to_district: formData.ship_to_district,
+      transport_mode: formData.transport_mode,
+      transport_number: formData.transport_number,
+      transport_driver_name: formData.transport_driver_name,
+      // from: formData.from,
+      product_name: formData.product_name,
+      product_code: formData.product_code,
+      total_freight: formData.total_freight,
+      advance_paid: formData.advance_paid,
+      to_pay: formData.to_pay,
     };
 
     setFormData({
-      name: "",
+      vendor_name: "",
       address: "",
-      amount: "",
-      group_id: "",
-      phone: ""
+      supplier_name: "",
+      ship_to_address1: "",
+      ship_to_district: "",
+      transport_mode: "",
+      transport_number: "",
+      transport_driver_name: "",
+      product_name: "",
+      product_code: "",
+      total_freight: "",
+      advance_paid: "",
+      to_pay: "",
     });
+
+    console.log(form);
+
+
 
     try {
       const response = await axios.post(`${BASEURL}/submit`, form);
@@ -273,33 +320,80 @@ const FormExampleAdmin = () => {
 
   return (
     <>
-      <div className="card column-design" >
-        <div className="card-body" style={{ backgroundImage: 'url()' }}>
-          <div className="front" style={{ backgroundColor: '#FA7D09' }}>
+      <div className="card column-design">
+        <div className="card-body">
+          <div className="front" style={{ backgroundColor: "#ed5a90", color: "white" }}>
             <Drawer />
-            {/* <Typography variant="h6" align="center">
-              <b>|| श्री गणेशाय नमः ||</b>
-            </Typography> */}
-            {/* <br /> */}
-            <Typography variant="h2" align="center">
-              <b>{value.id}</b>
-            </Typography>
-            <Typography variant="h5" align="center">
-              {value.address}
-            </Typography>
+            <Typography variant="h2" align="center"><b>{value.id}</b></Typography>
+            <Typography variant="h5" align="center">{value.address}</Typography>
             <hr />
           </div>
+
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Box component="form" onSubmit={handleSubmit} p={4} border={2} borderColor="green" borderRadius={2} width={600}>
+              <Grid container spacing={2}>
+                {[
+                  { label: "Name of Dealer", name: "vendor_name" },
+                  { label: "Address", name: "address", multiline: true },
+                  { label: "Sub Dealer", name: "supplier_name" },
+                  { label: "Place", name: "ship_to_address1" },
+                  { label: "District", name: "ship_to_district" },
+                  // { label: "Bags", name: "bags" },
+                  { label: "Transport Mode ", name: "transport_mode" },
+                  { label: "Truck No.", name: "transport_number" },
+                  { label: "Truck Driver Name", name: "transport_driver_name" },
+                  // { label: "From", name: "from" },
+                  { label: "Product", name: "product_name" },
+                  { label: "Code", name: "product_code" },
+                  { label: "Total Freight", name: "total_freight" },
+                  { label: "Advance", name: "advance_paid" },
+                  { label: "To Pay", name: "to_pay" }
+                ].map((field, index) => (
+                  <Grid item xs={12} sm={6} key={index}>
+                    <TextField
+                      fullWidth
+                      label={field.label}
+                      name={field.name}
+                      value={formData[field.name] || ""}
+                      onChange={handleonchange}
+                      required
+                      multiline={field.multiline || false}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+
+              <Box mt={3} display="flex" justifyContent="center">
+                <Button variant="contained" type="submit" fullWidth>Save</Button>
+              </Box>
+            </Box>
+          </Box>
+
           <div>
+            <h2><u>Contributors</u></h2>
+            <CustomTable data={data} />
           </div>
-          <br /><br />
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        </div>
+      </div>
+
+    </>
+  );
+
+}
+export default FormExampleAdmin;
+
+
+
+
+
+{/* <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <form onSubmit={handleSubmit} style={{ border: '2px solid black', padding: '40px', borderColor: "Green" }}>
               <div style={{ textAlign: "center" }}>
                 <h4>Make Receipt</h4>
               </div>
               <br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Name"><b>Name:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Name"><b>Name of Dealer :</b></label> &nbsp;&nbsp;
                 <TextField
                   label="name"
                   name="name"
@@ -325,7 +419,7 @@ const FormExampleAdmin = () => {
               <br /><br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <label htmlFor="Mobile No."><b>Mobile No.</b></label> &nbsp;&nbsp;
+                <label htmlFor="Mobile No."><b>Sub Dealer</b></label> &nbsp;&nbsp;
 
                 <TextField
                   type="text"
@@ -340,7 +434,115 @@ const FormExampleAdmin = () => {
               </div>
               <br /><br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>Amount:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Amount"><b>Place:</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>District:</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>Bags:</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>Truck No. :</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>From :</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>Product :</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>Code :</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>Total Freight :</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>Advance :</b></label> &nbsp;&nbsp;
+                <TextField
+                  label="amount"
+                  name='amount'
+                  value={formData.amount}
+                  onChange={handleonchange}
+                  required
+                  type="text"
+                />
+              </div>
+              <br /><br />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="Amount"><b>To Pay :</b></label> &nbsp;&nbsp;
                 <TextField
                   label="amount"
                   name='amount'
@@ -355,33 +557,8 @@ const FormExampleAdmin = () => {
                 <Button variant="contained" type="submit" style={{ width: '100%' }}>
                   Save
                 </Button>
-                {/* Add other buttons here if needed */}
               </div>
-              {/* <div style={{ display: 'flex' }}>
-                <Button variant="contained" type="submit">Save</Button> */}
-              {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <Button variant="contained" onClick={() => navigate("/userlist")} aria-label="User Management">User Management</Button> */}
-              {/* </div> */}
+            
             </form>
           </div>
-          <br></br>
-          <div>
-            <h2><u>Contributors</u></h2>
-            <CustomTable data={data} />
-            <td>
-            </td>
-            <br></br>
-          </div>
-        </div>
-      </div>
-
-    </>
-  );
-
-}
-export default FormExampleAdmin;
-
-
-
-
-
+         */}
