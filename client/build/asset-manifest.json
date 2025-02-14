@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3c5a2857.css",
+    "main.js": "/static/js/main.be3289b1.js",
+    "static/js/787.66a375c8.chunk.js": "/static/js/787.66a375c8.chunk.js",
+    "static/media/web-image.png": "/static/media/web-image.ef21e1f2d3da12f0e1f0.png",
+    "static/media/frontpage.jpg": "/static/media/frontpage.92aae696b768bde5b776.jpg",
+    "static/media/ob.jpg": "/static/media/ob.a311252d812ef3aaeac5.jpg",
+    "static/media/ICE page.png": "/static/media/ICE page.c2b346f99120212f2f43.png",
+    "static/media/vs.png": "/static/media/vs.7419083bad8a71cba4e7.png",
+    "static/media/ICE nologo.png": "/static/media/ICE nologo.4582ff872840b42a2b7a.png",
+    "static/media/aiimslogo.jpg": "/static/media/aiimslogo.004f797fc6d288ce7f01.jpg",
+    "static/media/bootstrap-icons.woff?": "/static/media/bootstrap-icons.66b7720f4a230f1b0341.woff",
+    "static/media/footer4.jpg": "/static/media/footer4.c6748621296cab8651fb.jpg",
+    "static/media/bootstrap-icons.woff2?": "/static/media/bootstrap-icons.64ed46b247405068ca60.woff2",
+    "static/media/obbb.jpg": "/static/media/obbb.84020aa2c0517ec563db.jpg",
+    "static/media/new1.png": "/static/media/new1.fd0c1a65114b8f1d78d9.png",
+    "index.html": "/index.html",
+    "main.3c5a2857.css.map": "/static/css/main.3c5a2857.css.map",
+    "main.be3289b1.js.map": "/static/js/main.be3289b1.js.map",
+    "787.66a375c8.chunk.js.map": "/static/js/787.66a375c8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c5a2857.css",
+    "static/js/main.be3289b1.js"
+  ]
+}
