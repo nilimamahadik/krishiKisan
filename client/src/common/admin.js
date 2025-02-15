@@ -11,6 +11,9 @@ import Button from '@mui/material/Button'
 import Drawer from "./drawer";
 import { RWebShare } from "react-web-share";
 import { Box, CardContent, Grid } from "@mui/material";
+import { formatDate } from "../commonfunction/formatDate";
+import FormData from "./form";
+import { Col, Form, Select, Row, Checkbox } from "antd";
 
 //for developement
 // const BASEURL = "http://localhost:5000/api"
@@ -56,7 +59,7 @@ function CustomTable({ data }) {
       responsive: ["md"]
 
     },
-   
+
     {
       title: "Place",
       dataIndex: "ship_to_address1",
@@ -72,13 +75,13 @@ function CustomTable({ data }) {
       dataIndex: "transport_driver_name",
       key: "name",
     },
-    
+
     {
       title: "Truck No.",
       dataIndex: "transport_number",
       key: "name",
     },
-   
+
     {
       title: "Product",
       dataIndex: "product_name",
@@ -89,7 +92,7 @@ function CustomTable({ data }) {
       dataIndex: "product_code",
       key: "name",
     },
-   
+
     {
       title: "Total Freight",
       dataIndex: "total_freight",
@@ -174,7 +177,9 @@ function CustomTable({ data }) {
     return arr.map((item, index) => {
       return {
         ...item,
-        receiptNumber: index + 1
+        receiptNumber: index + 1,
+        createdAt: formatDate(item?.createdAt)
+
       }
     });
   }
@@ -203,28 +208,48 @@ function CustomTable({ data }) {
   );
 }
 
-const FormExampleAdmin = () => {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "90%", // Default for mobile
+  maxHeight: "90vh", // Set maximum height to 90% of the viewport height
+  overflowY: "auto", // Enable vertical scrolling if content exceeds the height
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 2,
+  "@media (min-width: 600px)": { // For larger screens (web)
+    width: "60%",
+    p: 4,
+  },
+};
+
+const FormExampleAdmin = (props) => {
   const params = useParams()
-  // console.log(params);
-  // console.log(user);
-  // console.log(info);
   const [data, setData] = useState([])
   const [value, setValue] = useState({})
   const navigate = useNavigate();
+  const [form] = Form.useForm();
+  const [openUser, setOpenUser] = useState(false)
+  const [graceOpen, setGraceOpen] = useState(false)
+
+  const [modalForm] = Form.useForm();
+
   const [formData, setFormData] = useState({
-    vendor_name: "sfs",
-    address: "ffd",
-    supplier_name: "fdf",
-    ship_to_address1: "fdf",
-    ship_to_district: "sds",
-    transport_mode: "3",
-    transport_number: "34",
-    transport_driver_name: "dfd",
-    product_name: "dsd",
-    product_code: "455",
-    total_freight: "54",
-    advance_paid: "345",
-    to_pay: "445",
+    vendor_name: "",
+    address: "",
+    supplier_name: "",
+    ship_to_address1: "",
+    ship_to_district: "",
+    transport_mode: "",
+    transport_number: "",
+    transport_driver_name: "",
+    product_name: "",
+    product_code: "",
+    total_freight: "",
+    advance_paid: "",
+    to_pay: "",
   })
   const handleonchange = (e) => {
     // console.log(e);
@@ -317,20 +342,61 @@ const FormExampleAdmin = () => {
     }
   };
 
+  const handleGraceMarks = () => {
+    // console.log(gradeData)
+    setGraceOpen(true)
+  }
+  // console.log(modalForm.getFieldsValue());
 
+
+  const handleUserClose = () => {
+    setGraceOpen(false)
+    modalForm.resetFields()
+  }
   return (
     <>
       <div className="card column-design">
         <div className="card-body">
-          <div className="front" style={{ backgroundColor: "#ed5a90", color: "white" }}>
-            <Drawer />
+          <Drawer />
+
+          <div className="front" style={{ backgroundColor: "#c11c84", color: "white" }}>
+
             <Typography variant="h2" align="center"><b>{value.id}</b></Typography>
             <Typography variant="h5" align="center">{value.address}</Typography>
             <hr />
           </div>
 
+
+
           <Box display="flex" justifyContent="center" alignItems="center">
-            <Box component="form" onSubmit={handleSubmit} p={4} border={2} borderColor="green" borderRadius={2} width={600}>
+
+            <h2><u>Contributors</u></h2>
+            <Button variant="contained" type="submit" onClick={handleGraceMarks}>+ </Button>
+
+            <CustomTable data={data} />
+
+          </Box>
+
+
+        </div>
+        <Button variant="contained" justifyContent="center" alignItems="center" type="submit" onClick={handleGraceMarks}>+ </Button>
+
+      </div>
+      <FormData
+        open={graceOpen}
+        handleClose={handleUserClose}
+        props={props}
+        style={style}
+        modalForm={modalForm}
+      />
+    </>
+  );
+
+}
+export default FormExampleAdmin;
+
+
+{/* <Box component="form" onSubmit={handleSubmit} p={4} border={2} borderColor="green" borderRadius={2} width={600}>
               <Grid container spacing={2}>
                 {[
                   { label: "Name of Dealer", name: "vendor_name" },
@@ -364,201 +430,7 @@ const FormExampleAdmin = () => {
               </Grid>
 
               <Box mt={3} display="flex" justifyContent="center">
-                <Button variant="contained" type="submit" fullWidth>Save</Button>
+                <Button variant="contained" type="submit" >Save</Button>
               </Box>
-            </Box>
-          </Box>
+            </Box> */}
 
-          <div>
-            <h2><u>Contributors</u></h2>
-            <CustomTable data={data} />
-          </div>
-        </div>
-      </div>
-
-    </>
-  );
-
-}
-export default FormExampleAdmin;
-
-
-
-
-
-{/* <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <form onSubmit={handleSubmit} style={{ border: '2px solid black', padding: '40px', borderColor: "Green" }}>
-              <div style={{ textAlign: "center" }}>
-                <h4>Make Receipt</h4>
-              </div>
-              <br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Name"><b>Name of Dealer :</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleonchange}
-                  required
-                />
-              </div>
-
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Address"><b>Address:</b></label> &nbsp;&nbsp;
-                <TextField
-                  type="text"
-                  label="address"
-                  name='address'
-                  value={formData.address}
-                  onChange={handleonchange}
-                  required
-                  multiline
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-
-                <label htmlFor="Mobile No."><b>Sub Dealer</b></label> &nbsp;&nbsp;
-
-                <TextField
-                  type="text"
-                  label="phone"
-                  name='phone'
-                  value={formData.phone}
-                  onChange={handleonchange}
-                  required
-                  multiline
-                />
-
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>Place:</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>District:</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>Bags:</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>Truck No. :</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>From :</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>Product :</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>Code :</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>Total Freight :</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>Advance :</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="Amount"><b>To Pay :</b></label> &nbsp;&nbsp;
-                <TextField
-                  label="amount"
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleonchange}
-                  required
-                  type="text"
-                />
-              </div>
-              <br /><br />
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <Button variant="contained" type="submit" style={{ width: '100%' }}>
-                  Save
-                </Button>
-              </div>
-            
-            </form>
-          </div>
-         */}

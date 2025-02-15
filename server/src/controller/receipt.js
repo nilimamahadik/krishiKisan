@@ -1,16 +1,20 @@
 const express = require("express");
 const receipt = require("../models/receipt");
 
+
+
 exports.submit_form = async (req, res) => {
     console.log(req.body);
 
     try {
-        const date = new Date().toLocaleDateString("en-US", {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-        });
+        // const date = new Date().toLocaleDateString("en-US", {
+        //     weekday: "long",
+        //     month: "long",
+        //     day: "numeric",
+        //     year: "numeric",
+        // });
+        const date = new Date();
+        const formattedDate = date.toISOString().split("T")[0].replace(/-/g, ""); // YYYYMMDD
 
         const {
             vendor_name,
@@ -51,9 +55,22 @@ exports.submit_form = async (req, res) => {
             });
         }
 
+        const lastReceipt = await receipt.findOne({ receipt_no: new RegExp(`RCT-${formattedDate}-`, "i") })
+            .sort({ tran_date: -1 }) // Get the latest receipt for the current day
+            .exec();
+
+        let nextCounter = 1;
+        if (lastReceipt) {
+            const lastNumber = parseInt(lastReceipt.receipt_no.split("-")[2], 10);
+            nextCounter = lastNumber + 1;
+        }
+
+        const receiptNo = `KSC-${formattedDate}-${String(nextCounter).padStart(1, "0")}`;
+
         // Create a new receipt document
         const newReceipt = new receipt({
             tran_date: new Date(),
+            receipt_number: receiptNo,
             product_name: product_name ? product_name.trim() : "",
             product_code: product_code ? product_code.trim() : "",
 
@@ -93,7 +110,6 @@ exports.submit_form = async (req, res) => {
         });
     }
 };
-
 
 
 exports.getallusers = async (req, res) => {
