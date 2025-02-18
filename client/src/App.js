@@ -63,9 +63,23 @@ const router = createBrowserRouter([
     path: "/form/:id",
     element: <FormExample />,
   },
+
+
   {
+
     path: "/userlist",
-    element: <UserList />,
+
+
+    element: (
+      <Drawer>
+        <div className="App" style={{marginTop:"100px"}}>
+          <UserList />
+        </div>
+      </Drawer>
+
+
+    ),
+
   },
   {
     path: "/usersignup",
@@ -78,11 +92,28 @@ const router = createBrowserRouter([
   },
   {
     path: "/form/admin/:id",
-    element: <FormExampleAdmin />,
+    element: (
+      <Drawer>
+        <div className="App">
+          <FormExampleAdmin />
+        </div>
+      </Drawer>
+
+
+    ),
+
   },
   {
     path: "/csv/:id",
-    element: <Sheet />,
+    element:
+
+      (
+        <Drawer>
+          <div className="App" style={{ marginTop: "150px" }}>
+            <Sheet />
+          </div>
+        </Drawer>
+      ),
   },
   {
     path: "/Admin/forget",
@@ -94,7 +125,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <AssoProfile />,
+    element: (
+      <Drawer>
+        <div className="App" style={{ marginTop: "150px" }}>
+          <AssoProfile />
+        </div>
+      </Drawer>
+    ),
   },
   {
     path: "/train",

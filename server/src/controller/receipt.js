@@ -4,7 +4,7 @@ const receipt = require("../models/receipt");
 
 
 exports.submit_form = async (req, res) => {
-    console.log(req.body);
+    console.log("req", req.body);
 
     try {
         // const date = new Date().toLocaleDateString("en-US", {
@@ -27,6 +27,7 @@ exports.submit_form = async (req, res) => {
             transport_driver_name,
             product_name,
             product_code,
+            productDetails,
             total_freight,
             advance_paid,
             to_pay,
@@ -35,18 +36,18 @@ exports.submit_form = async (req, res) => {
             receiver
         } = req.body;
 
-
-        if (!vendor_name || !address || !group_id) {
-            return res.status(400).json({
-                status: "error",
-                message: "All required fields (name, address, amount, group_id) must be filled",
-            });
-        }
+        const parsed_productdetails = productDetails && JSON.parse(productDetails)
+        // if (!vendor_name || !address || !group_id) {
+        //     return res.status(400).json({
+        //         status: "error",
+        //         message: "All required fields (name, address, amount, group_id) must be filled",
+        //     });
+        // }
 
         // Trim values to prevent duplicate records with spaces
         const existingReceipt = await receipt.findOne({
-            vendor_name: vendor_name.trim(),
-            group_id: group_id.trim(),
+            vendor_name: vendor_name?.trim(),
+            group_id: group_id?.trim(),
         });
 
         if (existingReceipt) {
@@ -71,15 +72,11 @@ exports.submit_form = async (req, res) => {
         const newReceipt = new receipt({
             tran_date: new Date(),
             receipt_number: receiptNo,
-            product_name: product_name ? product_name.trim() : "",
-            product_code: product_code ? product_code.trim() : "",
-
-
             vendor_name: vendor_name.trim(),
             address: address.trim(),
 
 
-
+            productDetails: parsed_productdetails,
             ship_to_address1: ship_to_address1 ? ship_to_address1.trim() : "",
             ship_to_district: ship_to_district ? ship_to_district.trim() : "",
 
@@ -90,7 +87,7 @@ exports.submit_form = async (req, res) => {
             advance_paid: advance_paid || 0,
             to_pay: to_pay || 0,
 
-            group_id: group_id.trim(),
+            group_id: group_id?.trim(),
             receiver: receiver ? receiver.trim() : "",
         });
 
@@ -103,6 +100,8 @@ exports.submit_form = async (req, res) => {
             message: "Receipt Saved Successfully",
         });
     } catch (error) {
+        console.log(error);
+        
         console.error("Error saving receipt:", error.message);
         return res.status(500).json({
             status: "error",
@@ -116,6 +115,8 @@ exports.getallusers = async (req, res) => {
     // console.log(req.params);
     try {
         const allusers = await receipt.find({ group_id: req.params.id }).sort({ createdAt: -1 })
+        // console.log(allusers);
+        
         return res.status(201).json({
             data: allusers,
             status: "success",

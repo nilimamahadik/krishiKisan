@@ -9,5 +9,40 @@
     } 
 
    
-      
-      
+    .custom-container {
+      border: 1px solid #d3d3d3; /* Light gray border color */
+      border-radius: 8px; /* Optional: add border-radius */
+      padding: 20px; /* Optional: add padding */
+      margin-bottom: 10px; /* Optional: add margin at the bottom */
+      background-color:  #f7f7fa !important;
+  }
+   
+  .custom-form .ant-form-item-label {
+    padding: 0 !important; /* Override padding */
+    margin: 0; /* Ensure there's no margin */
+  }
+ 
+  .custom-form .ant-form-item-control {
+    margin-top: 0; /* Remove margin above input */
+    padding: 0 !important; /* Override padding */
+  }
+ 
+  .small-text {
+    font-size: 12px; /* Adjust the size as needed */
+    color: #777; /* Adjust the color as needed */
+}
+.custom-form textarea,
+.custom-form input,
+.custom-form select,
+.custom-form .ant-input,
+.custom-form .ant-select-selector,
+.custom-form .ant-input-number,
+.custom-form .ant-picker {
+    border-radius: 0px !important;
+}
+ 
+ 
+ 
+.header-background {
+  background-color: #f0f4f7  !important;
+}

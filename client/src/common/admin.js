@@ -10,11 +10,21 @@ import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button'
 import Drawer from "./drawer";
 import { RWebShare } from "react-web-share";
-import { Box, CardContent, Grid } from "@mui/material";
+import { Box, CardContent, Grid, IconButton, Toolbar } from "@mui/material";
 import { formatDate } from "../commonfunction/formatDate";
 import FormData from "./form";
 import { Col, Form, Select, Row, Checkbox } from "antd";
-
+import FormDataInfo from "./form";
+import { LuEye } from "react-icons/lu";
+import { FaRegShareSquare } from "react-icons/fa";
+import {
+  Menu as MenuIcon,
+  Dashboard as DashboardIcon,
+  Event as EventIcon,
+  Group as GroupIcon,
+  ExitToApp as ExitToAppIcon,
+  ExpandMore as ExpandMoreIcon,
+} from "@mui/icons-material";
 //for developement
 // const BASEURL = "http://localhost:5000/api"
 
@@ -114,8 +124,18 @@ function CustomTable({ data }) {
       key: "receipt",
       render: (text, record) => (
 
+
+
         <Link to={`/poster/${record._id}`}>
-          <Button variant="contained">View Receipt</Button>
+          {/* <Button
+            variant="contained"
+            color="primary"
+            startIcon={<LuEye size={20} color="white" />}
+          >           
+        
+          </Button>    */}
+
+          <LuEye size={20} color="primary" />
         </Link>
       ),
     },
@@ -134,8 +154,8 @@ function CustomTable({ data }) {
             title: " BHARAT ONLINE",
           }}
         >
-
-          <Button variant="contained">Share </Button>
+          <FaRegShareSquare size={20} color="#1677ff" />
+          {/* <Button variant="contained">Share </Button> */}
         </RWebShare>
       )
 
@@ -214,17 +234,17 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "90%", // Default for mobile
-  maxHeight: "90vh", // Set maximum height to 90% of the viewport height
+  maxHeight: "98vh", // Set maximum height to 90% of the viewport height
   overflowY: "auto", // Enable vertical scrolling if content exceeds the height
   bgcolor: "background.paper",
   boxShadow: 24,
-  p: 2,
+  p: 1,
   "@media (min-width: 600px)": { // For larger screens (web)
-    width: "60%",
+    width: "70%",
     p: 4,
   },
 };
-
+const drawerWidth = 240;
 const FormExampleAdmin = (props) => {
   const params = useParams()
   const [data, setData] = useState([])
@@ -233,6 +253,8 @@ const FormExampleAdmin = (props) => {
   const [form] = Form.useForm();
   const [openUser, setOpenUser] = useState(false)
   const [graceOpen, setGraceOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(true);
 
   const [modalForm] = Form.useForm();
 
@@ -353,36 +375,40 @@ const FormExampleAdmin = (props) => {
     setGraceOpen(false)
     modalForm.resetFields()
   }
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const handleDrawerCollapse = () => {
+    setDrawerOpen(!drawerOpen);
+  };
   return (
     <>
-      <div className="card column-design">
-        <div className="card-body">
+      <div >
+        {/* <div className="card-body">
           <Drawer />
+          </div> */}
+        {/* <div className="front" style={{ backgroundColor: "#c11c84", color: "white" , marginTop:"100px"}}>
+          <h4> Lorry Receipt</h4>
+        </div> */}
 
-          <div className="front" style={{ backgroundColor: "#c11c84", color: "white" }}>
+        <Toolbar style={{ backgroundColor: "#c11c84", color: "white", alignItems: "center", justifyContent: "center",height:"100px" }} >
+          <h1 style={{marginTop:"50px", padding:"10px"}}> Lorry Receipt</h1>
 
-            <Typography variant="h2" align="center"><b>{value.id}</b></Typography>
-            <Typography variant="h5" align="center">{value.address}</Typography>
-            <hr />
-          </div>
+        </Toolbar>
 
+        <Box display="flex" justifyContent="center" alignItems="center" style={{ marginTop: "40px" }} >
+          {/* <h2><u>Contributors</u></h2> */}
+          <Button variant="contained" type="submit" style={{ marginRight: "10px" }} onClick={handleGraceMarks}> Generate   + </Button>
+        </Box>
 
-
-          <Box display="flex" justifyContent="center" alignItems="center">
-
-            <h2><u>Contributors</u></h2>
-            <Button variant="contained" type="submit" onClick={handleGraceMarks}>+ </Button>
-
-            <CustomTable data={data} />
-
-          </Box>
+        <Box display="flex" justifyContent="center" alignItems="center" >
+          <CustomTable data={data} />
+        </Box>
 
 
-        </div>
-        <Button variant="contained" justifyContent="center" alignItems="center" type="submit" onClick={handleGraceMarks}>+ </Button>
 
       </div>
-      <FormData
+      <FormDataInfo
         open={graceOpen}
         handleClose={handleUserClose}
         props={props}

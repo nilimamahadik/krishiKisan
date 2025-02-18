@@ -40,6 +40,7 @@ const {
   getPartnerAdminProfile,
 } = require("../controller/partner/admin");
 const { requireSignin } = require("../common-middleware");
+const { getMaster } = require("../controller/master");
 
 const router = express.Router();
 
@@ -60,7 +61,7 @@ router.post("/authenticate_user", authenticate_user);
 router.post("/create_admin_account", create_admin_account);
 router.post("/authenticate_admin", authenticate_admin);
 router.post("/user_management", user_management);
-router.post("/submit", submit_form);
+router.post("/submit",upload.none(), submit_form);
 router.get("/getallusers/:id", getallusers);
 router.get("/getsingleusers/:id", getsingleusers);
 router.patch("/update/:id", update);
@@ -90,5 +91,6 @@ router.get("/admin/allShops", getShopsData);
 router.get("/specific/shopData/:id", getSpecShopData);
 router.get("/partner/admin/profile/:id", getPartnerAdminProfile);
 router.get("/profile/:id", getPartnerProfile);
+router.get("/get/master", getMaster)
 
 module.exports = router;

@@ -182,15 +182,20 @@
 
 const mongoose = require("mongoose");
 
+const productSchema = new mongoose.Schema({
+  product_name: { type: String, trim: true },
+  product_code: { type: Number, trim: true },
+  uom: { type: String, trim: true},
+  weight: { type: String, trim: true },
+  rate: { type: Number, trim: true },
+  total_freight: { type: Number, trim: true},
+}, { _id: false });
+
 const applySchema = new mongoose.Schema(
   {
     tran_id: { type: String, trim: true }, // Corrected name
     tran_date: { type: Date },
-
-    product_code: { type: String, trim: true },
-    product_name: { type: String, trim: true },
-    product_qty: { type: Number,  trim: true }, // Changed to Number
-    uom: { type: String,trim: true },
+    productDetails : [productSchema],
 
     vendor_name: { type: String,  trim: true },
     supplier_name: { type: String, trim: true },
