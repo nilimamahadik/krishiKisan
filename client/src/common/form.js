@@ -12,7 +12,7 @@ import { Error, ErrorOutline } from '@mui/icons-material';
 // import "./minutes.css"
 // import { Icons } from '../../../Partner/Comman';
 const BASEURL = "/api"
-
+const { Option } = Select;
 
 const FormDataInfo = ({
     graceEligibleStudents,
@@ -214,7 +214,28 @@ const FormDataInfo = ({
                             </Col>
                             <Col span={12}>
                                 <Form.Item style={{ marginBottom: "0px" }} name='transport_mode' label="Transport Mode">
-                                    <Input />
+                                    {/* <Input /> */}
+                                    {/* <Select placeholder="Select Transport Mode">
+                                        {master.length > 0 &&
+                                            master[0]?.transportmodename?.map((mode, index) => (
+                                                <Option key={index} value={mode}>
+                                                    {mode}
+                                                </Option>
+                                            ))}
+                                    </Select> */}
+                                    <Select
+                                        showSearch
+                                        placeholder="Select Transport Mode"
+                                        optionFilterProp="label"
+                                        size="large"
+                                        style={{ width: '100%' }}
+                                        options={master[0]?.transportmodename?.map((mode) => ({
+                                            value: mode,
+                                            label: mode,
+                                        }))} // Convert array to objects
+                                        getPopupContainer={(trigger) => trigger.parentNode}
+                                    />
+
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -339,7 +360,19 @@ const FormDataInfo = ({
                                                         label={index === 0 ? 'Select uom' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter Select uom' }]}
                                                     >
-                                                        <Input size="medium" placeholder="  Select uom" />
+                                                        <Select
+                                                            showSearch
+                                                            placeholder="Select unit of measure"
+                                                            optionFilterProp="label"
+                                                            size="large"
+                                                            style={{ width: '100%' }}
+                                                            options={master[0]?.uom_name?.map((mode) => ({
+                                                                value: mode,
+                                                                label: mode,
+                                                            }))} // Convert array to objects
+                                                            getPopupContainer={(trigger) => trigger.parentNode}
+                                                        />
+
                                                     </Form.Item>
                                                 </Col>
 

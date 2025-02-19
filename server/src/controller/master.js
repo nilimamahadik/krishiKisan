@@ -3,10 +3,10 @@ const express = require("express");
 const master = require("../models/master");
 
 exports.getMaster = async (req, res) => {
-    console.log(req);
+    // console.log(req);
     try {
         const allusers = await master.find()
-        console.log(allusers);
+        // console.log(allusers);
         
         return res.status(201).json({
             data: allusers,

@@ -308,7 +308,7 @@ const Sidebar = ({ children }) => {
 
       <List>
         {[
-          { text: "Dashboard", icon: <DashboardIcon sx={{ color: "#c11c84" }} />, path: "/form/admin/:id" },
+          // { text: "Dashboard", icon: <DashboardIcon sx={{ color: "#c11c84" }} />, path: "/form/admin/:id" },
           { text: "User Management", icon: <ManageAccountsIcon sx={{ color: "#c11c84" }} />, path: "/userlist" },
           { text: "View Profile", icon: <AccountBoxIcon sx={{ color: "#c11c84" }} />, path: "/profile" },
           { text: "Logout", icon: <ExitToAppIcon sx={{ color: "#c11c84" }} />, path: "/" },
