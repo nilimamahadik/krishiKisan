@@ -29,8 +29,7 @@ exports.submit_form = async (req, res) => {
             product_code,
             productDetails,
             total_freight,
-            advance_paid,
-            to_pay,
+            
 
             group_id,
             receiver
@@ -84,9 +83,7 @@ exports.submit_form = async (req, res) => {
             transport_number: transport_number ? transport_number.trim() : "",
             transport_driver_name: transport_driver_name ? transport_driver_name.trim() : "",
             total_freight: total_freight || 0,
-            advance_paid: advance_paid || 0,
-            to_pay: to_pay || 0,
-
+          
             group_id: group_id?.trim(),
             receiver: receiver ? receiver.trim() : "",
         });

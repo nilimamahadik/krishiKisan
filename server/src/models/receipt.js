@@ -189,6 +189,8 @@ const productSchema = new mongoose.Schema({
   weight: { type: String, trim: true },
   rate: { type: Number, trim: true },
   total_freight: { type: Number, trim: true},
+  advance_paid:{ type: Number, trim: true},
+  to_pay: { type: Number, trim: true}
 }, { _id: false });
 
 const applySchema = new mongoose.Schema(
