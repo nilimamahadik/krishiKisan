@@ -189,6 +189,11 @@ const productSchema = new mongoose.Schema({
   weight: { type: String, trim: true },
   rate: { type: Number, trim: true },
   total_freight: { type: Number, trim: true},
+  advance_paid:{ type: Number, trim: true},
+  to_pay: { type: Number, trim: true},
+    //changes by dhawal
+    
+  // quantity: { type: Number, trim: true }
 }, { _id: false });
 
 const applySchema = new mongoose.Schema(
@@ -221,17 +226,30 @@ const applySchema = new mongoose.Schema(
     transport_mode: { type: String, trim: true },
     transport_number: { type: String,  trim: true },
     transport_driver_name: { type: String,  trim: true },
+    description: { type: String,  trim: true },
 
     // Payment Details
-    total_freight: { type: Number,  trim: true }, // Changed to Number
-    advance_paid: { type: Number,  trim: true }, // Changed to Number
-    to_pay: { type: Number,  trim: true }, // Changed to Number
+    total_freight: { type: String,  trim: true }, // Changed to Number
+    advance_paid: { type: String,  trim: true }, // Changed to Number
+    to_pay: { type: String,  trim: true }, // Changed to Number
 
     receipt_number: { type: String,  trim: true },
     invoice_number: { type: String,  trim: true },
 
+    //changes by dhawal
+    total_amount: { type: Number,  trim: true }, // Changed to Number
+    sc: { type: Number,  trim: true }, // Changed to Number
+    hamali: { type: Number,  trim: true }, // Changed to Number
+    sch: { type: Number,  trim: true }, // Changed to Number
+    total: { type: Number,  trim: true }, // Changed to Number
+
     group_id: { type: String, trim: true },
     receiver: { type: String, trim: true },
+    
+          
+    
+    
+    
   },
   { timestamps: true }
 );

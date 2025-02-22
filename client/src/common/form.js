@@ -1,3 +1,6 @@
+
+
+
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Dropdown, Button, Menu, Segmented, Table, Input, Spin, Form, DatePicker, Typography, Card, Col, Row, Select } from "antd";
 import Modal from "@mui/material/Modal";
@@ -9,6 +12,7 @@ import './poster.css'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Error, ErrorOutline } from '@mui/icons-material';
+import { useForm } from 'antd/es/form/Form';
 // import "./minutes.css"
 // import { Icons } from '../../../Partner/Comman';
 const BASEURL = "/api"
@@ -42,6 +46,7 @@ const FormDataInfo = ({
 
     const [value, setValue] = useState({})
     const navigate = useNavigate();
+
 
     const [file, setFile] = useState();
     const [projectOptions, setProjectOptions] = useState([]);
@@ -125,9 +130,14 @@ const FormDataInfo = ({
             formData.append("hamali", values.hamali)
             formData.append("sch", values.sch)
             formData.append("total", values.total)
+            formData.append("weight", values.weight)
+            formData.append("group_id", params.id)
 
-            // formData.append("createdBy", values.user.id);
-            // formData.append("createdByName", values.user.name);
+            // changes by dhawal start
+            formData.append("createdBy", values.user.id);
+            formData.append("createdByName", values.user.name);
+
+            // changes by dhawal end 
             console.log(...formData.entries());
 
             try {
@@ -143,8 +153,11 @@ const FormDataInfo = ({
                 console.log(err);
             }
         }
+        
 
     }
+
+    
 
 
 
@@ -155,6 +168,7 @@ const FormDataInfo = ({
         // setLoader(false);
         alert("Please fill in the mandatory fields!")
         console.log("Failed:", errorInfo);
+        
     };
     return (
         <Modal
@@ -170,6 +184,7 @@ const FormDataInfo = ({
                     {value.id}
                 </Title>
                 <hr />
+                
 
 
                 <Form
@@ -197,19 +212,25 @@ const FormDataInfo = ({
                         <Row gutter={16} style={{ display: 'flex', flexWrap: 'nowrap' }}>
                             <Col span={12}>
                                 <Form.Item style={{ marginBottom: "0px" }} name='from' label="From">
-                                    <Input placeholder="Enter From" />
+                                    <Input placeholder="Enter From"
+                                    style={{ textTransform: "capitalize" }}
+                                    required />
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
                                 <Form.Item style={{ marginBottom: "0px" }} name='transport_number' label="Truck No.">
-                                    <Input placeholder="Enter Truck No." />
+                                    <Input placeholder="Enter Truck No."
+                                    style={{ textTransform: "capitalize" }}
+                                    required />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row gutter={16} style={{ display: 'flex', flexWrap: 'nowrap' }}>
                             <Col span={12}>
                                 <Form.Item style={{ marginBottom: "0px" }} name='transport_driver_name' label="Truck Driver Name">
-                                    <Input placeholder="Enter Truck Driver Name" />
+                                    <Input type='text'
+                                    placeholder="Enter Truck Driver Name" 
+                                    style={{ textTransform: "capitalize" }}/>
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
@@ -235,7 +256,6 @@ const FormDataInfo = ({
                                         }))} // Convert array to objects
                                         getPopupContainer={(trigger) => trigger.parentNode}
                                     />
-                                
 
                                 </Form.Item>
                             </Col>
@@ -250,18 +270,21 @@ const FormDataInfo = ({
                         <Row gutter={16} style={{ display: 'flex', flexWrap: 'nowrap' }}>
                             <Col span={12}>
                                 <Form.Item style={{ marginBottom: "0px" }} name='vendor_name' label="Name">
-                                    <Input placeholder="Enter Name of Consignor" />
+                                    <Input placeholder="Enter Name of Consignor"
+                                    style={{ textTransform: "capitalize" }}
+                                    required />
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
                                 <Form.Item style={{ marginBottom: "0px" }} name='address' label="Address">
-                                    <Input placeholder="Enter Address" />
+                                    <Input placeholder="Enter Address"
+                                    style={{ textTransform: "capitalize" }} />
                                 </Form.Item>
                             </Col>
                         </Row>
                     </div>
 
-                    <h5>Consignor Details</h5>
+                    <h5>Consignee Details</h5>
                     <div className='custom-container'>
                         <Row gutter={16} style={{ display: 'flex', flexWrap: 'nowrap' }}>
                             {/* Student Name */}
@@ -271,7 +294,8 @@ const FormDataInfo = ({
                                     name='supplier_name'
                                     label="Name of Consignee"
                                 >
-                                    <Input placeholder="Enter Name of Consignee" />
+                                    <Input placeholder="Enter Name of Consignee"
+                                    style={{ textTransform: "capitalize" }} />
                                 </Form.Item>
                             </Col>
 
@@ -282,7 +306,8 @@ const FormDataInfo = ({
                                     name='ship_to_address1'
                                     label="Place"
                                 >
-                                    <Input placeholder="Enter Place" />
+                                    <Input placeholder="Enter Place"
+                                    style={{ textTransform: "capitalize" }} />
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -294,7 +319,8 @@ const FormDataInfo = ({
                                     name='ship_to_district'
                                     label="District"
                                 >
-                                    <Input placeholder="Enter District" />
+                                    <Input placeholder="Enter District" 
+                                    style={{ textTransform: "capitalize" }}/>
                                 </Form.Item>
                             </Col>
 
@@ -331,7 +357,8 @@ const FormDataInfo = ({
                                                         label={index === 0 ? 'Product Name' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter Product Name!' }]}
                                                     >
-                                                        <Input size="medium" placeholder="Enter Product Name" />
+                                                        <Input size="medium" placeholder="Enter Product Name"
+                                                        style={{ textTransform: "capitalize" }} />
                                                     </Form.Item>
 
                                                 </Col>
@@ -359,7 +386,7 @@ const FormDataInfo = ({
                                                         name={[name, 'uom']}
                                                         fieldKey={[fieldKey, 'uom']}
                                                         label={index === 0 ? 'Select uom' : null} // Show label only for the first row
-                                                        rules={[{ required: false, message: 'Please enter Select uom' }]}
+                                                        rules={[{ required: true, message: 'Please enter Select uom' }]}
                                                     >
                                                         <Select
                                                             showSearch
@@ -386,8 +413,10 @@ const FormDataInfo = ({
                                                         fieldKey={[fieldKey, 'weight']}
                                                         label={index === 0 ? 'Weight' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter Weight!' }]}
+                                                        
                                                     >
-                                                        <Input size="medium" placeholder=" enter Weight" />
+                                                        <Input size="medium" placeholder=" enter Weight"
+                                                        type='number' />
                                                     </Form.Item>
                                                 </Col>
                                                 <Col style={{ flex: 1 }}>
@@ -399,7 +428,8 @@ const FormDataInfo = ({
                                                         label={index === 0 ? 'Rate' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter Rate!' }]}
                                                     >
-                                                        <Input size="medium" placeholder="enter Rate" />
+                                                        <Input size="medium" placeholder="enter Rate"
+                                                        inputMode='numeric' />
                                                     </Form.Item>
                                                 </Col>
                                                 <Col style={{ flex: 1 }}>
@@ -411,7 +441,8 @@ const FormDataInfo = ({
                                                         label={index === 0 ? 'Total Freight' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter Total Freight!' }]}
                                                     >
-                                                        <Input size="medium" placeholder="Enter Total Freight" />
+                                                        <Input size="medium" placeholder="Enter Total Freight"
+                                                        inputMode='numeric' />
                                                     </Form.Item>
                                                 </Col>
 
@@ -424,7 +455,8 @@ const FormDataInfo = ({
                                                         label={index === 0 ? 'Advance' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter Advance!' }]}
                                                     >
-                                                        <Input size="medium" placeholder="Enter Advance" />
+                                                        <Input size="medium" placeholder="Enter Advance" 
+                                                        inputMode='numeric' />
                                                     </Form.Item>
                                                 </Col>
                                                 {/* Remove Button */}
@@ -437,7 +469,8 @@ const FormDataInfo = ({
                                                         label={index === 0 ? 'To Pay' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter To Pay!' }]}
                                                     >
-                                                        <Input size="medium" placeholder="Enter To Pay" />
+                                                        <Input size="medium" placeholder="Enter To Pay"
+                                                        inputMode='numeric' />
                                                     </Form.Item>
                                                 </Col>
 
@@ -462,7 +495,8 @@ const FormDataInfo = ({
                                         </div>
                                     ))}
                                     <Form.Item>
-                                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}
+                                        >
                                             <Button
                                                 type="dashed"
                                                 onClick={() => add()}
@@ -486,8 +520,10 @@ const FormDataInfo = ({
                                 style={{ marginBottom: "0px" }}
                                 name='sc'
                                 label="S.C"
+                                rules={[{ required: true, message: 'Please enter S.C!' }]}
                             >
-                                <Input size="medium" placeholder="Enter S.C " />
+                                <Input size="medium" placeholder="Enter S.C "
+                                inputMode='numeric' />
                             </Form.Item>
                         </Col>
 
@@ -495,10 +531,14 @@ const FormDataInfo = ({
                         <Col span={6}>
                             <Form.Item
                                 style={{ marginBottom: "0px" }}
+                                
                                 name='hamali'
                                 label="Hamali"
+                                rules={[{ required: true, message: 'Please enter Hamali!' }]}
+                                
                             >
-                                <Input size="medium" placeholder="Enter Hamali" />
+                                <Input size="medium" placeholder="Enter Hamali"
+                                inputMode='numeric' />
                             </Form.Item>
                         </Col>
                         {/* Student Name */}
@@ -507,8 +547,10 @@ const FormDataInfo = ({
                                 style={{ marginBottom: "0px" }}
                                 name='sch'
                                 label="S.Ch "
+                                rules={[{ required: true, message: 'Please enter S.Ch!' }]}
                             >
-                                <Input size="medium" placeholder="Enter S.Ch" />
+                                <Input size="medium" placeholder="Enter S.Ch" 
+                                inputMode='numeric' />
                             </Form.Item>
                         </Col>
 
@@ -518,8 +560,10 @@ const FormDataInfo = ({
                                 style={{ marginBottom: "0px" }}
                                 name='total'
                                 label="Total"
+                                rules={[{ required: true, message: 'Please enter Total!' }]}
                             >
-                                <Input size="medium" placeholder="Enter Total" />
+                                <Input size="medium" placeholder="Enter Total"
+                                inputMode='numeric' />
                             </Form.Item>
                         </Col>
                     </Row>
@@ -539,11 +583,12 @@ const FormDataInfo = ({
 
 
                             loading={loader}
-                        // onClick={onClickLoading}
-                        // style={{ backgroundColor: "#2c3e50", color: "white" }}
+                        //     onClick={onClickLoading}
+                        //style={{ backgroundColor: "#2c3e50", color: "white" }}
                         >
                             Submit
                         </Button>
+
                     </Form.Item>
                 </Form>
             </Box>

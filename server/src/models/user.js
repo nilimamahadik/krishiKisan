@@ -8,7 +8,7 @@ const applySchema = new mongoose.Schema(
         trim: true
     },
     
-   name:{
+    name:{
         type: String,
         required: true,
         trim: true
@@ -41,7 +41,7 @@ const applySchema = new mongoose.Schema(
     code:{
         type:String,
         required: true,
-               trim: true
+        trim: true
     }
 },
 {timestamps: true}

@@ -2,13 +2,25 @@
 
 /* Default background image for web (greater than or equal to 400 pixels) */
 .container {
-    background-image: url('./image/web-image.png');
+    background-image: url('./image/new1.png');
     background-size: cover;
     background-position: center;
     height: 100vh;
-    position: relative;
+    position: center;
     opacity: 0.8 ;
+    max-width: 1300px;
     
+}
+
+.medium {
+   
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    width: 500px;
+ position: center;
+  
+    max-width: 1300px;
 }
 
 /* Background image for mobile (less than 400 pixels) */

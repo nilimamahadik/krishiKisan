@@ -118,6 +118,7 @@ function CustomTable({ data }) {
       dataIndex: "to_pay",
       key: "name",
     },
+
     {
       title: "Receipt",
       dataIndex: "receipt",
@@ -233,18 +234,21 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "auto", // Default for mobile
+  width:'auto', // Default for mobile
   maxHeight: "98vh", // Set maximum height to 90% of the viewport height
   overflowY: "auto", // Enable vertical scrolling if content exceeds the height
   bgcolor: "background.paper",
   boxShadow: 24,
-  // p: 1,
+  p: 1,
   "@media (min-width: 600px)": { // For larger screens (web)
     width: "70%",
     p: 4,
   },
 };
-const drawerWidth = 250;
+const drawerWidth = 240;
+
+
+
 const FormExampleAdmin = (props) => {
   const params = useParams()
   const [data, setData] = useState([])
@@ -272,6 +276,19 @@ const FormExampleAdmin = (props) => {
     total_freight: "",
     advance_paid: "",
     to_pay: "",
+    //changes by dhawal
+    description:"",
+    uom:"",
+
+    rate:"",
+    quantity:"",
+    total_amount:"",
+    sc:"",
+    hamali:"",
+    sch:"",
+    total:"",
+
+
   })
   const handleonchange = (e) => {
     // console.log(e);
@@ -331,6 +348,17 @@ const FormExampleAdmin = (props) => {
       total_freight: formData.total_freight,
       advance_paid: formData.advance_paid,
       to_pay: formData.to_pay,
+      //changes by dhawal
+      description: formData.description,
+      uom: formData.uom,
+      weight:formData.weight,
+      rate:formData.rate,
+      quantity:formData.quantity,
+      total_amount:formData.total_amount,
+      sc:formData.sc,
+      hamali:formData.hamali,
+      sch:formData.sch,
+      total:formData.total,
     };
 
     setFormData({
@@ -347,6 +375,17 @@ const FormExampleAdmin = (props) => {
       total_freight: "",
       advance_paid: "",
       to_pay: "",
+       //changes by dhawal
+      description:"",
+      uom:"",
+      weight:"",
+      rate:"",
+      quantity:"",
+      total_amount:"",
+      sc:"",
+      hamali:"",
+      sch:"",
+      total:"",
     });
 
     console.log(form);
@@ -366,6 +405,7 @@ const FormExampleAdmin = (props) => {
 
   const handleGraceMarks = () => {
     // console.log(gradeData)
+    
     setGraceOpen(true)
   }
   // console.log(modalForm.getFieldsValue());
@@ -401,8 +441,8 @@ const FormExampleAdmin = (props) => {
           <Button variant="contained" type="submit" style={{ marginRight: "10px" }} onClick={handleGraceMarks}> Generate   + </Button>
         </Box>
 
-        <Box display="flex" justifyContent="center" alignItems="center" >
-          <CustomTable data={data} />
+        <Box  justifyContent="center" alignItems="center" >
+          <CustomTable data ={data} />
         </Box>
 
 
@@ -420,6 +460,10 @@ const FormExampleAdmin = (props) => {
 
 }
 export default FormExampleAdmin;
+
+
+
+
 
 
 {/* <Box component="form" onSubmit={handleSubmit} p={4} border={2} borderColor="green" borderRadius={2} width={600}>

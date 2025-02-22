@@ -59,10 +59,16 @@ const router = createBrowserRouter([
     path: "/adminsignup",
     element: <AdminSignUp />,
   },
+
   {
     path: "/form/:id",
     element: <FormExample />,
   },
+ 
+  // {
+  //  path:"/form",
+  //  element:<FormExample />
+  // },
 
 
   {

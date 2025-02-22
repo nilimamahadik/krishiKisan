@@ -66,7 +66,7 @@ export default function AdminLogin() {
           minHeight: "80vh", // Center vertically
         }}>
         <div>
-          <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "white" }}>Login</Typography>
+          <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "black" }}>Login</Typography>
           <form onSubmit={handleSubmit} >
             <TextField
               fullWidth
@@ -85,12 +85,12 @@ export default function AdminLogin() {
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Set the label color to white
+                  color: "black", // Set the label color to white
                 },
               }}
               sx={{
                 "& fieldset": {
-                  borderColor: "white", // Set the border color to white
+                  borderColor: "black", // Set the border color to white
                 },
               }}
             />
@@ -112,12 +112,12 @@ export default function AdminLogin() {
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Set the label color to white
+                  color: "black", // Set the label color to white
                 },
               }}
               sx={{
                 "& fieldset": {
-                  borderColor: "white", // Set the border color to white
+                  borderColor: "black", // Set the border color to white
                 },
               }}
             />
@@ -128,7 +128,7 @@ export default function AdminLogin() {
             </a>
           </div> */}
             <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
-              <a href="/Admin/forget" className="font-size-3 text-dodger line-height-reset" style={{ color: "white" }}>
+              <a href="/Admin/forget" className="font-size-3 text-dodger line-height-reset" style={{ color: "black" }}>
                 Forgot Password
               </a>
             </Typography>
@@ -137,8 +137,8 @@ export default function AdminLogin() {
                 Login
               </Button>
             </div>
-            <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
-              Don't have an account? <a href="/adminsignup" style={{ color: "white" }}>Sign up</a>
+            <Typography variant="body2" align="right" style={{ color: "black", fontSize: "16px" }}>
+              Don't have an account? <a href="/adminsignup" style={{ color: "black" }}>Sign up</a>
             </Typography>
           </form>
         </div>

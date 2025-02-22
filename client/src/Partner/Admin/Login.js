@@ -43,7 +43,7 @@ const PartnerAdminLogin = (props) => {
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
           Swal.fire("Good job!", "Login successfully.", "success");
-           navigate("/dashboard");
+          navigate("/dashboard");
       } else {
         Swal.fire("Sorry!", loginData.data.error , "error");
         seterrorpassword("Invalid Credentials");

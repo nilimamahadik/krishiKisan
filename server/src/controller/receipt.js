@@ -29,8 +29,17 @@ exports.submit_form = async (req, res) => {
             product_code,
             productDetails,
             total_freight,
-            advance_paid,
+            rate,
+            quantity,
+            total_amount,
+            sc,
+            hamali,
+            sch,
+            total,
             to_pay,
+            advance_paid,
+        
+            
 
             group_id,
             receiver
@@ -79,16 +88,32 @@ exports.submit_form = async (req, res) => {
             productDetails: parsed_productdetails,
             ship_to_address1: ship_to_address1 ? ship_to_address1.trim() : "",
             ship_to_district: ship_to_district ? ship_to_district.trim() : "",
-
             supplier_name: supplier_name ? supplier_name.trim() : "",
             transport_number: transport_number ? transport_number.trim() : "",
             transport_driver_name: transport_driver_name ? transport_driver_name.trim() : "",
             total_freight: total_freight || 0,
-            advance_paid: advance_paid || 0,
-            to_pay: to_pay || 0,
-
             group_id: group_id?.trim(),
             receiver: receiver ? receiver.trim() : "",
+            //changes by dhawal
+            // description:description ? description.trim() : "",
+            // uom:uom ? uom.trim() : "",
+            
+            rate: rate || 0,
+            quantity:quantity || 0,
+            total_amount:total_amount ? total_amount.trim() : "",
+            sc:sc ? sc.trim() : "",
+            hamali:hamali ? hamali.trim() : "",
+            sch:sch ? sch.trim() : "",
+            total:total ? total.trim() : "",
+            to_pay: to_pay || 0,
+            advance_paid:advance_paid || 0,
+
+            //changes by dhawal end
+           
+           
+           
+            
+
         });
 
         const savedReceipt = await newReceipt.save();

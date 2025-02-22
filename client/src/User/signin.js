@@ -50,13 +50,16 @@ const UserLogin = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // console.log(data.status == "User");
+        //console.log(data.status == "User");
         // console.log("EMAIL :: ", user)
         if (data.status == "User") {
-          // console.log(data);
+          console.log(data);
+
+         
           alert("login successful");
           localStorage.setItem("link", JSON.stringify(data));
-          navigate(`/form/${data.id}`)
+          navigate(`/form/${data.id}`);
+                    
         } else {
           alert(JSON.stringify(data.error));
         }
