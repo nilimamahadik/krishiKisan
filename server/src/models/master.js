@@ -5,7 +5,6 @@ const applySchema = new mongoose.Schema(
     {
         transportmodename: {
             type: Array
-            
         },
 
         uom_code: {
@@ -21,7 +20,5 @@ const applySchema = new mongoose.Schema(
     { timestamps: true }
 
 )
-
-  
 
 module.exports = mongoose.model('master', applySchema)

@@ -118,7 +118,6 @@ function CustomTable({ data }) {
       dataIndex: "to_pay",
       key: "name",
     },
-
     {
       title: "Receipt",
       dataIndex: "receipt",
@@ -234,7 +233,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width:'auto', // Default for mobile
+  width: "auto", // Default for mobile
   maxHeight: "98vh", // Set maximum height to 90% of the viewport height
   overflowY: "auto", // Enable vertical scrolling if content exceeds the height
   bgcolor: "background.paper",
@@ -246,9 +245,6 @@ const style = {
   },
 };
 const drawerWidth = 240;
-
-
-
 const FormExampleAdmin = (props) => {
   const params = useParams()
   const [data, setData] = useState([])
@@ -276,19 +272,6 @@ const FormExampleAdmin = (props) => {
     total_freight: "",
     advance_paid: "",
     to_pay: "",
-    //changes by dhawal
-    description:"",
-    uom:"",
-
-    rate:"",
-    quantity:"",
-    total_amount:"",
-    sc:"",
-    hamali:"",
-    sch:"",
-    total:"",
-
-
   })
   const handleonchange = (e) => {
     // console.log(e);
@@ -348,17 +331,6 @@ const FormExampleAdmin = (props) => {
       total_freight: formData.total_freight,
       advance_paid: formData.advance_paid,
       to_pay: formData.to_pay,
-      //changes by dhawal
-      description: formData.description,
-      uom: formData.uom,
-      weight:formData.weight,
-      rate:formData.rate,
-      quantity:formData.quantity,
-      total_amount:formData.total_amount,
-      sc:formData.sc,
-      hamali:formData.hamali,
-      sch:formData.sch,
-      total:formData.total,
     };
 
     setFormData({
@@ -375,17 +347,6 @@ const FormExampleAdmin = (props) => {
       total_freight: "",
       advance_paid: "",
       to_pay: "",
-       //changes by dhawal
-      description:"",
-      uom:"",
-      weight:"",
-      rate:"",
-      quantity:"",
-      total_amount:"",
-      sc:"",
-      hamali:"",
-      sch:"",
-      total:"",
     });
 
     console.log(form);
@@ -405,7 +366,6 @@ const FormExampleAdmin = (props) => {
 
   const handleGraceMarks = () => {
     // console.log(gradeData)
-    
     setGraceOpen(true)
   }
   // console.log(modalForm.getFieldsValue());
@@ -441,8 +401,8 @@ const FormExampleAdmin = (props) => {
           <Button variant="contained" type="submit" style={{ marginRight: "10px" }} onClick={handleGraceMarks}> Generate   + </Button>
         </Box>
 
-        <Box  justifyContent="center" alignItems="center" >
-          <CustomTable data ={data} />
+        <Box display="flex" justifyContent="center" alignItems="center" >
+          <CustomTable data={data} />
         </Box>
 
 
@@ -460,47 +420,3 @@ const FormExampleAdmin = (props) => {
 
 }
 export default FormExampleAdmin;
-
-
-
-
-
-
-{/* <Box component="form" onSubmit={handleSubmit} p={4} border={2} borderColor="green" borderRadius={2} width={600}>
-              <Grid container spacing={2}>
-                {[
-                  { label: "Name of Dealer", name: "vendor_name" },
-                  { label: "Address", name: "address", multiline: true },
-                  { label: "Sub Dealer", name: "supplier_name" },
-                  { label: "Place", name: "ship_to_address1" },
-                  { label: "District", name: "ship_to_district" },
-                  // { label: "Bags", name: "bags" },
-                  { label: "Transport Mode ", name: "transport_mode" },
-                  { label: "Truck No.", name: "transport_number" },
-                  { label: "Truck Driver Name", name: "transport_driver_name" },
-                  // { label: "From", name: "from" },
-                  { label: "Product", name: "product_name" },
-                  { label: "Code", name: "product_code" },
-                  { label: "Total Freight", name: "total_freight" },
-                  { label: "Advance", name: "advance_paid" },
-                  { label: "To Pay", name: "to_pay" }
-                ].map((field, index) => (
-                  <Grid item xs={12} sm={6} key={index}>
-                    <TextField
-                      fullWidth
-                      label={field.label}
-                      name={field.name}
-                      value={formData[field.name] || ""}
-                      onChange={handleonchange}
-                      required
-                      multiline={field.multiline || false}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-
-              <Box mt={3} display="flex" justifyContent="center">
-                <Button variant="contained" type="submit" >Save</Button>
-              </Box>
-            </Box> */}
-

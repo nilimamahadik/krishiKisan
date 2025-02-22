@@ -190,10 +190,9 @@ const productSchema = new mongoose.Schema({
   rate: { type: Number, trim: true },
   total_freight: { type: Number, trim: true},
   advance_paid:{ type: Number, trim: true},
-  to_pay: { type: Number, trim: true},
-    //changes by dhawal
-    
-  // quantity: { type: Number, trim: true }
+
+  to_pay: { type: Number, trim: true}
+
 }, { _id: false });
 
 const applySchema = new mongoose.Schema(

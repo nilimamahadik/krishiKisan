@@ -418,7 +418,7 @@ const Sidebar = ({ children }) => {
           flexGrow: 1,
           p: 1, // Ensure no padding
           width: { sm: `calc(100% - ${drawerOpen ? drawerWidth : 0}px)` },
-          // transition: "width 0.3s",
+          transition: "width 0.3s",
           // ml: { sm: `${drawerOpen ? drawerWidth : 0}px` },
         }}
       >
