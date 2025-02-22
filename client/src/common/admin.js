@@ -238,13 +238,13 @@ const style = {
   overflowY: "auto", // Enable vertical scrolling if content exceeds the height
   bgcolor: "background.paper",
   boxShadow: 24,
-  // p: 1,
+  p: 1,
   "@media (min-width: 600px)": { // For larger screens (web)
     width: "70%",
     p: 4,
   },
 };
-const drawerWidth = 250;
+const drawerWidth = 240;
 const FormExampleAdmin = (props) => {
   const params = useParams()
   const [data, setData] = useState([])
@@ -420,43 +420,4 @@ const FormExampleAdmin = (props) => {
 
 }
 export default FormExampleAdmin;
-
-
-{/* <Box component="form" onSubmit={handleSubmit} p={4} border={2} borderColor="green" borderRadius={2} width={600}>
-              <Grid container spacing={2}>
-                {[
-                  { label: "Name of Dealer", name: "vendor_name" },
-                  { label: "Address", name: "address", multiline: true },
-                  { label: "Sub Dealer", name: "supplier_name" },
-                  { label: "Place", name: "ship_to_address1" },
-                  { label: "District", name: "ship_to_district" },
-                  // { label: "Bags", name: "bags" },
-                  { label: "Transport Mode ", name: "transport_mode" },
-                  { label: "Truck No.", name: "transport_number" },
-                  { label: "Truck Driver Name", name: "transport_driver_name" },
-                  // { label: "From", name: "from" },
-                  { label: "Product", name: "product_name" },
-                  { label: "Code", name: "product_code" },
-                  { label: "Total Freight", name: "total_freight" },
-                  { label: "Advance", name: "advance_paid" },
-                  { label: "To Pay", name: "to_pay" }
-                ].map((field, index) => (
-                  <Grid item xs={12} sm={6} key={index}>
-                    <TextField
-                      fullWidth
-                      label={field.label}
-                      name={field.name}
-                      value={formData[field.name] || ""}
-                      onChange={handleonchange}
-                      required
-                      multiline={field.multiline || false}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-
-              <Box mt={3} display="flex" justifyContent="center">
-                <Button variant="contained" type="submit" >Save</Button>
-              </Box>
-            </Box> */}
 

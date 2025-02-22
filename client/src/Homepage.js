@@ -202,15 +202,15 @@ function App(props) {
   return (
     <>
       <div className="container">
-        <nav
+        {/* <nav
           style={{
-            position: "absolute",
+           height:200px
             top: 0,
             right: "30px",
             padding: "80px",
-            zIndex: 1,
+          
           }}
-        >
+        > */}
           {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small-label">Age</InputLabel>
             <Select
@@ -228,7 +228,42 @@ function App(props) {
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>
           </FormControl> */}
-          <select
+
+<div 
+// className="background"
+>
+     
+        <div className="options">
+        <h2>Select an Option</h2>
+        <div className="options-container">
+          <label className="option">
+            <input
+              type="radio"
+              value="/adminlogin"
+              checked={selectedOption === 'organization'}
+              onChange={handleOptionChange}
+            />
+            Organization
+          </label>
+          <label className="option">
+            <input
+              type="radio"
+             value="/userlogin"
+              checked={selectedOption === 'member'}
+              onChange={handleOptionChange}
+            />
+            Member
+          </label>
+        </div>
+        <div className="selected-option">
+         
+
+      </div>
+      </div>
+    </div>
+
+
+          {/* <select
             value={selectedOption}
             onChange={handleOptionChange}
             style={{ backgroundColor: "white", borderRadius: "10px", height:"30px", width:"250px" }}
@@ -240,10 +275,9 @@ function App(props) {
               <option value="/adminlogin">Organization</option>
               <option value="/userlogin">Member</option>
             </optgroup>
-            {/* <option value="/cricket">Sport</option>
-            <option value="/weather">Weather</option>           */}
-          </select>
-          &nbsp; &nbsp;
+           
+          </select> */}
+          {/* &nbsp; &nbsp; */}
           {/* <select
             value={selectedOption}
             onChange={handleOptionChange}
@@ -258,7 +292,7 @@ function App(props) {
 
             
           </select> */}
-        </nav>
+        
       </div>
     </>
   );

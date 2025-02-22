@@ -37,6 +37,8 @@ console.log(response.data.data);
       setUserData([
         { label: 'Organization Name', value: data.mandalname},
         { label: 'Organization Code', value: data.code },
+        { label: 'Mandal Name', value: data.mandalname},
+        { label: 'Mandal Code', value: data.code },
         { label: 'Registration No', value: data.registration },
         { label: 'Admin Full Name', value: data.name },
         { label: 'Address', value: data.address },

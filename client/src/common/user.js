@@ -326,6 +326,7 @@
 //               <div style={{ display: 'flex', alignItems: 'center' }}>
 
 //                 <label htmlFor="Name"><b>Name:</b></label> &nbsp;&nbsp;
+//                 <label htmlFor="Name"><b>Namee:</b></label> &nbsp;&nbsp;
 
 //                 <TextField
 
@@ -479,9 +480,7 @@ import { RWebShare } from "react-web-share";
 import { Box, CardContent, Grid, IconButton, Toolbar } from "@mui/material";
 import { formatDate } from "../commonfunction/formatDate";
 import FormData from "./form";
-import { Col, Form, Select, Row, Checkbox } from "antd";
-import FormDataInfo from "./form";
-import { LuEye } from "react-icons/lu";
+import { Col, Form, Select, Row, Checkbox } from "antd";import { LuEye } from "react-icons/lu";
 import { FaRegShareSquare } from "react-icons/fa";
 import {
   Menu as MenuIcon,
@@ -491,6 +490,8 @@ import {
   ExitToApp as ExitToAppIcon,
   ExpandMore as ExpandMoreIcon,
 } from "@mui/icons-material";
+import FormDataInfo from "./form";
+import FormDataInfoUser from "./userform";
 //for developement
 // const BASEURL = "http://localhost:5000/api"
 
@@ -501,7 +502,6 @@ const BASEURL = "/api"
 function CustomTable({ data }) {
   const [columnItems, setColumnItems] = useState([]);
   const [columnsToShow, setColumnsToShow] = useState([]);
-
   const columns = [
     {
       title: "Date",
@@ -711,7 +711,8 @@ const style = {
   },
 };
 const drawerWidth = 240;
-const FormExampleAdmin = (props) => {
+
+const FormExample = () => {
   const params = useParams()
   const [data, setData] = useState([])
   const [value, setValue] = useState({})
@@ -721,6 +722,9 @@ const FormExampleAdmin = (props) => {
   const [graceOpen, setGraceOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(true);
+  const [users, setUsers] = useState({})
+  console.log(users);
+  
 
   const [modalForm] = Form.useForm();
 
@@ -765,17 +769,22 @@ const FormExampleAdmin = (props) => {
 
 
   useEffect(() => {
-    const savedInfo = localStorage.getItem("info");
-    if (savedInfo) {
-      const parsedInfo = JSON.parse(savedInfo);
-      setValue(parsedInfo);
+
+    const savedUser = localStorage.getItem("link");
+// console.log(savedUser);
+
+    if (savedUser) {
+
+      const parsedUser = JSON.parse(savedUser);
+
+      setUsers(parsedUser);
+
     }
     else {
       navigate("/");
     }
 
   }, []);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -856,6 +865,8 @@ const FormExampleAdmin = (props) => {
         {/* <div className="front" style={{ backgroundColor: "#c11c84", color: "white" , marginTop:"100px"}}>
           <h4> Lorry Receipt</h4>
         </div> */}
+ <Typography variant="h3" align="center" style={{ marginTop: "15px" }}><b>{users.id}</b></Typography>
+        <Typography variant="h5" align="center">{users.address}</Typography>
 
         <Toolbar style={{ backgroundColor: "#c11c84", color: "white", alignItems: "center", justifyContent: "center",height:"100px" }} >
           <h1 style={{marginTop:"50px", padding:"10px"}}> Lorry Receipt</h1>
@@ -874,10 +885,10 @@ const FormExampleAdmin = (props) => {
 
 
       </div>
-      <FormDataInfo
+      <FormDataInfoUser
         open={graceOpen}
         handleClose={handleUserClose}
-        props={props}
+        // props={props}
         style={style}
         modalForm={modalForm}
       />
@@ -885,47 +896,4 @@ const FormExampleAdmin = (props) => {
   );
 
 }
-export default FormExampleAdmin;
-
-
-{/* <Box component="form" onSubmit={handleSubmit} p={4} border={2} borderColor="green" borderRadius={2} width={600}>
-              <Grid container spacing={2}>
-                {[
-                  { label: "Name of Dealer", name: "vendor_name" },
-                  { label: "Address", name: "address", multiline: true },
-                  { label: "Sub Dealer", name: "supplier_name" },
-                  { label: "Place", name: "ship_to_address1" },
-                  { label: "District", name: "ship_to_district" },
-                  // { label: "Bags", name: "bags" },
-                  { label: "Transport Mode ", name: "transport_mode" },
-                  { label: "Truck No.", name: "transport_number" },
-                  { label: "Truck Driver Name", name: "transport_driver_name" },
-                  // { label: "From", name: "from" },
-                  { label: "Product", name: "product_name" },
-                  { label: "Code", name: "product_code" },
-                  { label: "Total Freight", name: "total_freight" },
-                  { label: "Advance", name: "advance_paid" },
-                  { label: "To Pay", name: "to_pay" }
-                ].map((field, index) => (
-                  <Grid item xs={12} sm={6} key={index}>
-                    <TextField
-                      fullWidth
-                      label={field.label}
-                      name={field.name}
-                      value={formData[field.name] || ""}
-                      onChange={handleonchange}
-                      required
-                      multiline={field.multiline || false}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-
-              <Box mt={3} display="flex" justifyContent="center">
-                <Button variant="contained" type="submit" >Save</Button>
-              </Box>
-            </Box> */}
-
-
-
-
+export default FormExample;

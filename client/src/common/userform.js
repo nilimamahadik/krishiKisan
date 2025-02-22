@@ -14,7 +14,7 @@ import { Error, ErrorOutline } from '@mui/icons-material';
 const BASEURL = "/api"
 const { Option } = Select;
 
-const FormDataInfo = ({
+const FormDataInfoUser = ({
     graceEligibleStudents,
     open,
     handleClose,
@@ -36,7 +36,7 @@ const FormDataInfo = ({
     const { Title } = Typography;
 
     const [data, setData] = useState([])
-
+    const [users, setUsers] = useState({})
     const [master, setMaster] = useState([])
     console.log(master);
 
@@ -59,19 +59,34 @@ const FormDataInfo = ({
     const handleUserClose = () => {
         setOpenUser(false); // Close modal
     };
+    // useEffect(() => {
+    //     const savedInfo = localStorage.getItem("info");
+    //     if (savedInfo) {
+    //         const parsedInfo = JSON.parse(savedInfo);
+    //         setValue(parsedInfo);
+    //     }
+    //     else {
+    //         navigate("/");
+    //     }
+
+    // }, []);
+
     useEffect(() => {
-        const savedInfo = localStorage.getItem("info");
-        if (savedInfo) {
-            const parsedInfo = JSON.parse(savedInfo);
-            setValue(parsedInfo);
+
+        const savedUser = localStorage.getItem("link");
+    
+        if (savedUser) {
+    
+          const parsedUser = JSON.parse(savedUser);
+    
+          setUsers(parsedUser);
+    
         }
         else {
-            navigate("/");
+          navigate("/");
         }
-
-    }, []);
-
-
+    
+      }, []);
     const getMaster = async () => {
 
         const get = axios.get(`${BASEURL}/get/master`)
@@ -119,8 +134,8 @@ const FormDataInfo = ({
             formData.append("ship_to_address1", values.ship_to_address1)
             formData.append("ship_to_district", values.ship_to_district)
             formData.append("productDetails", JSON.stringify(values.productDetails))
-            formData.append("advance_paid", values.advance_paid)
-            formData.append("to_pay", values.to_pay)
+            // formData.append("advance_paid", values.advance_paid)
+            // formData.append("to_pay", values.to_pay)
             formData.append("sc", values.sc)
             formData.append("hamali", values.hamali)
             formData.append("sch", values.sch)
@@ -359,7 +374,7 @@ const FormDataInfo = ({
                                                         name={[name, 'uom']}
                                                         fieldKey={[fieldKey, 'uom']}
                                                         label={index === 0 ? 'Select uom' : null} // Show label only for the first row
-                                                        rules={[{ required: false, message: 'Please enter Select uom' }]}
+                                                        rules={[{ required: true, message: 'Please enter Select uom' }]}
                                                     >
                                                         <Select
                                                             showSearch
@@ -551,4 +566,4 @@ const FormDataInfo = ({
     );
 };
 
-export default FormDataInfo;
+export default FormDataInfoUser;
