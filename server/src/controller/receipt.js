@@ -112,7 +112,7 @@ exports.getallusers = async (req, res) => {
     // console.log(req.params);
     try {
         const allusers = await receipt.find({ group_id: req.params.id }).sort({ createdAt: -1 })
-        // console.log(allusers);
+        console.log(allusers);
         
         return res.status(201).json({
             data: allusers,

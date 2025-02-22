@@ -14,7 +14,7 @@ import { Error, ErrorOutline } from '@mui/icons-material';
 const BASEURL = "/api"
 const { Option } = Select;
 
-const FormDataInfo = ({
+const FormDataInfoUser = ({
     graceEligibleStudents,
     open,
     handleClose,
@@ -36,7 +36,7 @@ const FormDataInfo = ({
     const { Title } = Typography;
 
     const [data, setData] = useState([])
-
+    const [users, setUsers] = useState({})
     const [master, setMaster] = useState([])
     console.log(master);
 
@@ -59,19 +59,34 @@ const FormDataInfo = ({
     const handleUserClose = () => {
         setOpenUser(false); // Close modal
     };
+    // useEffect(() => {
+    //     const savedInfo = localStorage.getItem("info");
+    //     if (savedInfo) {
+    //         const parsedInfo = JSON.parse(savedInfo);
+    //         setValue(parsedInfo);
+    //     }
+    //     else {
+    //         navigate("/");
+    //     }
+
+    // }, []);
+
     useEffect(() => {
-        const savedInfo = localStorage.getItem("info");
-        if (savedInfo) {
-            const parsedInfo = JSON.parse(savedInfo);
-            setValue(parsedInfo);
+
+        const savedUser = localStorage.getItem("link");
+    
+        if (savedUser) {
+    
+          const parsedUser = JSON.parse(savedUser);
+    
+          setUsers(parsedUser);
+    
         }
         else {
-            navigate("/");
+          navigate("/");
         }
-
-    }, []);
-
-
+    
+      }, []);
     const getMaster = async () => {
 
         const get = axios.get(`${BASEURL}/get/master`)
@@ -551,4 +566,4 @@ const FormDataInfo = ({
     );
 };
 
-export default FormDataInfo;
+export default FormDataInfoUser;
