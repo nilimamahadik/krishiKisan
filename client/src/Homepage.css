@@ -1,14 +1,14 @@
-/* Set a default background image for the container */
+/* Set a default background image for the container
 
 /* Default background image for web (greater than or equal to 400 pixels) */
-.container {
+/* .container {
     background-image: url('./image/new1.png');
     background-size: cover;
-    background-position: center;
+    background-position: left;
     height: 100vh;
 
     display: flex;
-    position: relative;
+   
     opacity: 0.8 ;
     max-width: 1300px;
     
@@ -16,6 +16,7 @@
 .options {
     height: 300px;
     width: 300px;
+    justify-items: center;
     align-items: center;
     border-width: 4px;
     border-color: black;
@@ -34,9 +35,217 @@ position: center;
     max-width: 1300px;
 }
 
-/* Background image for mobile (less than 400 pixels) */
-@media (max-width: 768px) {
+Background image for mobile (less than 400 pixels) */
+/* @media (max-width: 768px) {
     .container {
         background-image: url('./image/frontpage.jpg');
     }
+} */
+/* 
+
+
+/* General Styles */
+body,
+html #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  opacity: 0.9;
+ font-family: Arial, sans-serif;
+  
 }
+.outer{
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  display: block;
+}
+
+.containers {
+    
+  display: flex;
+  color: cccccc;
+  border-width: 2px;
+  box-shadow: 10px;
+  width: 70%;
+  flex: 1;
+  float: left;
+  object-fit: cover;
+  background-image: url('./image/trucks.jpeg');  
+  justify-content: center; 
+  background-repeat: no-repeat ;
+  height: calc(100vh - 50px); /* Adjust height to accommodate footer */
+}
+
+/* Left Side: Truck Image with Overlay Text */
+/* .left-side {
+  margin-top:30px;
+   justify-content: right;
+  flex: 1;
+  width: 50%;
+  align-items: center;
+  padding-left: 600px;
+  position: relative;
+  
+} */
+
+.image-overlay {
+  
+  box-shadow: 0 10px 20px rgba(0 ,0,0,0.3);
+  width: 30%;
+  background-color: #f4f4f4;
+  height: 100vh;
+  margin-top: 200px;
+  box-shadow: brown;
+   float: right;
+  border-radius: 20px;
+  padding: 50px;
+  margin-bottom: 40px;
+  
+  
+  
+}
+/* 
+.image-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+} */
+
+.overlay-text {
+
+
+
+justify-content: center;
+align-items: center;
+
+/* box-shadow: 0 10px 20px rgba(0 ,0,0,0.3); */
+transform: translateY(-5px);
+  
+  top: 50%;
+  /* background-color: #eb8989; */
+  left: 50%;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  color: rgb(9, 1, 1);
+  text-align: center;
+}
+
+.overlay-text h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.overlay-text p {
+  font-size: 1.5rem;
+}
+
+/* Right Side: Login Options */
+.right-side {
+  flex: 1;
+  padding-top: 20px;
+  box-shadow: 0 10px 20px rgba(0 ,0,0,0.3);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 50px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #7078e6; */
+}
+
+.login-options {
+  text-align: center;
+  font-size: large;
+}
+/* .design {
+  
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    height: 300px;
+} */
+
+.login-options h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.login-options button {
+  display: block;
+  width: 200px;
+  padding: 15px;
+  margin: 10px auto;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-options button:hover {
+  background-color: #0056b3;
+}
+
+/* Footer Section */
+footer {
+  height: 50px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+h2{
+    padding-top: 80px;
+    font-size: 30px;
+}
+image{
+  background-image: url('./image/truck.jpeg');
+}
+.option{
+  font-size: medium;
+}
+.footer{
+  background-color: #333;
+  margin-top: auto;
+  bottom: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  
+}
+.buttons {
+   display: flex; 
+  justify-content: center;
+  color: aliceblue;
+
+}
+.buttons.organisation {
+  background-color: #28a745;
+}
+
+.buttonsmember {
+  background-color: #17a2b8;
+}
+ 

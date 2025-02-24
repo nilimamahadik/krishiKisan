@@ -108,16 +108,16 @@ function CustomTable({ data }) {
       dataIndex: "total_freight",
       key: "amount"
     },
-    {
-      title: "Advance",
-      dataIndex: "advance_paid",
-      key: "name",
-    },
-    {
-      title: "To Pay",
-      dataIndex: "to_pay",
-      key: "name",
-    },
+    // {
+    //   title: "Advance",
+    //   dataIndex: "advance_paid",
+    //   key: "name",
+    // },
+    // {
+    //   title: "To Pay",
+    //   dataIndex: "to_pay",
+    //   key: "name",
+    // },
     {
       title: "Receipt",
       dataIndex: "receipt",
@@ -272,6 +272,9 @@ const FormExampleAdmin = (props) => {
     total_freight: "",
     advance_paid: "",
     to_pay: "",
+    rate:"",
+    weight:"",
+
   })
   const handleonchange = (e) => {
     // console.log(e);
@@ -331,6 +334,8 @@ const FormExampleAdmin = (props) => {
       total_freight: formData.total_freight,
       advance_paid: formData.advance_paid,
       to_pay: formData.to_pay,
+      rate: formData.rate,
+      weight: formData.weight
     };
 
     setFormData({
@@ -347,6 +352,7 @@ const FormExampleAdmin = (props) => {
       total_freight: "",
       advance_paid: "",
       to_pay: "",
+      weight:""
     });
 
     console.log(form);

@@ -471,13 +471,22 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card, TextField } from '@material-ui/core';
 import axios from 'axios';
+import obbb from "../image/obbb.jpg";
 import { Typography } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button'
 import Drawer from "./drawer";
 import { RWebShare } from "react-web-share";
-import { Box, CardContent, Grid, IconButton, Toolbar } from "@mui/material";
+import { Box,
+   CardContent,
+    Grid,
+     IconButton, 
+     Toolbar,
+     Divider,List,ListItemIcon,ListItem,ListItemText,
+     Container
+
+ } from "@mui/material";
 import { formatDate } from "../commonfunction/formatDate";
 import FormData from "./form";
 import { Col, Form, Select, Row, Checkbox } from "antd";import { LuEye } from "react-icons/lu";
@@ -489,9 +498,15 @@ import {
   Group as GroupIcon,
   ExitToApp as ExitToAppIcon,
   ExpandMore as ExpandMoreIcon,
+  
 } from "@mui/icons-material";
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+
 import FormDataInfo from "./form";
 import FormDataInfoUser from "./userform";
+import DrawerUser from "./draweruser";
 //for developement
 // const BASEURL = "http://localhost:5000/api"
 
@@ -536,11 +551,12 @@ function CustomTable({ data }) {
 
     },
 
-    {
-      title: "Place",
-      dataIndex: "ship_to_address1",
-      key: "name",
-    },
+    // {
+    //   title: "Place",
+    //   dataIndex: "ship_to_address1",
+    //   key: "name",
+    // },
+
     {
       title: "District",
       dataIndex: "ship_to_district",
@@ -552,38 +568,38 @@ function CustomTable({ data }) {
       key: "name",
     },
 
-    {
-      title: "Truck No.",
-      dataIndex: "transport_number",
-      key: "name",
-    },
+    // {
+    //   title: "Truck No.",
+    //   dataIndex: "transport_number",
+    //   key: "name",
+    // },
 
-    {
-      title: "Product",
-      dataIndex: "product_name",
-      key: "name",
-    },
-    {
-      title: "Code",
-      dataIndex: "product_code",
-      key: "name",
-    },
+    // {
+    //   title: "Product",
+    //   dataIndex: "product_name",
+    //   key: "name",
+    // },
+    // {
+    //   title: "Code",
+    //   dataIndex: "product_code",
+    //   key: "name",
+    // },
 
-    {
-      title: "Total Freight",
-      dataIndex: "total_freight",
-      key: "amount"
-    },
-    {
-      title: "Advance",
-      dataIndex: "advance_paid",
-      key: "name",
-    },
-    {
-      title: "To Pay",
-      dataIndex: "to_pay",
-      key: "name",
-    },
+    // {
+    //   title: "Total Freight",
+    //   dataIndex: "total_freight",
+    //   key: "amount"
+    // },
+    // {
+    //   title: "Advance",
+    //   dataIndex: "advance_paid",
+    //   key: "name",
+    // },
+    // {
+    //   title: "To Pay",
+    //   dataIndex: "to_pay",
+    //   key: "name",
+    // },
     {
       title: "Receipt",
       dataIndex: "receipt",
@@ -704,7 +720,7 @@ const style = {
   overflowY: "auto", // Enable vertical scrolling if content exceeds the height
   bgcolor: "background.paper",
   boxShadow: 24,
-  // p: 1,
+   p: 1,
   "@media (min-width: 600px)": { // For larger screens (web)
     width: "70%",
     p: 4,
@@ -742,6 +758,8 @@ const FormExample = () => {
     total_freight: "",
     advance_paid: "",
     to_pay: "",
+    rate:"",
+    weight:""
   })
   const handleonchange = (e) => {
     // console.log(e);
@@ -806,6 +824,9 @@ const FormExample = () => {
       total_freight: formData.total_freight,
       advance_paid: formData.advance_paid,
       to_pay: formData.to_pay,
+      rate:formData.rate,
+      weight:formData.weight
+      
     };
 
     setFormData({
@@ -822,6 +843,8 @@ const FormExample = () => {
       total_freight: "",
       advance_paid: "",
       to_pay: "",
+      rate:"",
+      weight:""
     });
 
     console.log(form);
@@ -856,29 +879,102 @@ const FormExample = () => {
   const handleDrawerCollapse = () => {
     setDrawerOpen(!drawerOpen);
   };
+
+  const drawer = (
+    <div>
+      <Toolbar
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src= {obbb}
+          alt="Logo"
+          style={{ height: "120px", width: "120px" }}
+        />
+
+      </Toolbar>
+      <Divider sx={{ bgcolor: "black", height: "1px" }} />
+      {/* <Toolbar style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <img src="/khasdar.jpg" alt="Logo" style={{ height: "100px", width: "100px", marginBottom: "8px" }} />
+                <Typography variant="h6" noWrap>
+                    Khasdar Mahotsav
+                </Typography>
+            </Toolbar> */}
+
+      <List>
+        {[
+          // { text: "Dashboard", icon: <DashboardIcon sx={{ color: "#c11c84" }} />, path: "/form/admin/:id" },
+          
+          { text: "View Profile", icon: <AccountBoxIcon sx={{ color: "#c11c84" }} />, path: "/" },
+          { text: "Logout", icon: <ExitToAppIcon sx={{ color: "#c11c84" }} />, path: "/login" },
+        ].map((item, index) => (
+          <div key={index}>
+            <ListItem button component={Link} to={item.path}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              {drawerOpen && <ListItemText primary={item.text} />}
+            </ListItem>
+            <Divider sx={{ bgcolor: "black", height: "1px" }} />
+          </div>
+        ))}
+
+        {/* Download Button (Separate from List) */}
+        <ListItem button
+        
+
+        >
+          <ListItemIcon>
+            <DownloadForOfflineIcon sx={{ color: "#c11c84" }} />
+          </ListItemIcon>
+          {
+          
+          <ListItemText primary="Download" />
+          }
+        </ListItem>
+        <Divider sx={{ bgcolor: "black", height: "1px" }} />
+      </List>
+
+    </div>
+  );
   return (
+    
     <>
       <div >
+        <div>
+       
+        </div>
+
+
         {/* <div className="card-body">
           <Drawer />
           </div> */}
-        {/* <div className="front" style={{ backgroundColor: "#c11c84", color: "white" , marginTop:"100px"}}>
+        <div className="front" style={{ backgroundColor: "#c11c84", color: "white" , marginTop:"80px"}}>
           <h4> Lorry Receipt</h4>
-        </div> */}
- <Typography variant="h3" align="center" style={{ marginTop: "15px" }}><b>{users.id}</b></Typography>
+        </div>
+ {/* <Typography variant="h3" align="center" style={{ marginTop: "15px" }}><b>{users.id}</b></Typography>
         <Typography variant="h5" align="center">{users.address}</Typography>
-
-        <Toolbar style={{ backgroundColor: "#c11c84", color: "white", alignItems: "center", justifyContent: "center",height:"100px" }} >
-          <h1 style={{marginTop:"50px", padding:"10px"}}> Lorry Receipt</h1>
+         */}
+        <Toolbar style={{ backgroundColor: "#c11c84", color: "white", alignItems: "center", justifyContent: "center",height:"80px" }} >
+          <h1 style={{marginLeft:"200px", padding:"10px",alignContent:"center",}}> Lorry Receipt</h1>
+         
 
         </Toolbar>
+        <Link to="/">
+          <Button variant="contained">Log Out</Button>
+          </Link>
 
+         <Container
+         style={{width:"100px",borderBlock:"10px"} }           >
+
+         </Container>
         <Box display="flex" justifyContent="center" alignItems="center" style={{ marginTop: "40px" }} >
           {/* <h2><u>Contributors</u></h2> */}
           <Button variant="contained" type="submit" style={{ marginRight: "10px" }} onClick={handleGraceMarks}> Generate   + </Button>
         </Box>
 
-        <Box display="flex" justifyContent="center" alignItems="center" >
+        <Box display="flex" justifyContent="center" alignItems="center" margin="10px" >
           <CustomTable data={data} />
         </Box>
 
@@ -892,6 +988,7 @@ const FormExample = () => {
         style={style}
         modalForm={modalForm}
       />
+       <DrawerUser/>
     </>
   );
 

@@ -2,11 +2,12 @@
 
 /* Default background image for web */
 .background {
-    background-image: url("../image/new1.png");
+    background-image: url("../image/trucks.jpeg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     height: 110vh;
+    
     
   }
   
@@ -29,11 +30,23 @@
 .custom-input {
     height: 30px; /* Adjust the height as needed */
     overflow: hidden; /* Prevent scrolling */
-    border: 1px solid white; /* Set white border */
+    border: 1px solid rgb(237, 234, 234); /* Set white border */
     border-radius: 10px; /* Adjust the border radius as needed */
   }
   
   .custom-input input::placeholder {
-    color: white; /* Set white placeholder text color */
+    color: rgb(241, 133, 133); /* Set white placeholder text color */
   }
-  
+  .signup{
+    margin-top: 100px;
+  }
+  .imageoverlay{
+  background-color: aliceblue;
+  position: absolute;
+  width: 400px;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  }

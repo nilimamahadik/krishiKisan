@@ -8,6 +8,8 @@ import Container from "@mui/material/Container";
 import { Link } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material";
+import '../Admin/Admin.css'
+
 
 //for developement
 // const BASEURL = "http://localhost:5000/api"
@@ -88,8 +90,8 @@ const UserSignUp = () => {
   return (
     <div className="background">
       <Container component="main" maxWidth="xs">
-        <div>
-          <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "white" }}>Sign Up</Typography>
+        <div className="imageoverlays">
+          <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "black",marginTop:"30px"  }}>Sign Up</Typography>
           <form onSubmit={handleSubmit}>
             {/* <div className="mb-3">
           <label>Association Name</label>
@@ -113,25 +115,26 @@ const UserSignUp = () => {
         </div> */}
             <TextField
               fullWidth
-              label="Organization Code"
+              label="Company Code"
               type="text"
               required
-              placeholder="Enter your Organization Code"
+              placeholder="Enter your Company Code"
               onChange={(e) => setCode(e.target.value)}
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
+            <p style={{fontSize:"10px", textAlign:"right"}}>For company code. Please contact officials. </p>
 
             <TextField
               fullWidth
@@ -143,14 +146,14 @@ const UserSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -165,14 +168,14 @@ const UserSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -187,14 +190,14 @@ const UserSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -209,14 +212,14 @@ const UserSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -225,8 +228,8 @@ const UserSignUp = () => {
               Sign Up
             </Button>
 
-            <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
-              Already registered? <a href="/userlogin" style={{ color: "white" }}>Login</a>
+            <Typography variant="body2" align="right" style={{ color: "black", fontSize: "16px" }}>
+              Already registered? <a href="/userlogin" style={{ color: "black" }}>Login</a>
             </Typography>
           </form>
         </div>

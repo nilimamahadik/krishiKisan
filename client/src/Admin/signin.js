@@ -65,7 +65,7 @@ export default function AdminLogin() {
           justifyContent: "center",
           minHeight: "80vh", // Center vertically
         }}>
-        <div>
+        <div className="imageoverlay" >
           <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "black" }}>Login</Typography>
           <form onSubmit={handleSubmit} >
             <TextField
@@ -79,7 +79,7 @@ export default function AdminLogin() {
               InputProps={{
                 style: {
                   borderRadius: "10px", // Set the border radius
-                  color: "white",
+                  color: "black",
                 },
                 notched: false, // Remove the notch border
               }}
@@ -106,7 +106,7 @@ export default function AdminLogin() {
               InputProps={{
                 style: {
                   borderRadius: "10px",
-                  color: "white", // Set the border radius
+                  color: "black", // Set the border radius
                 },
                 notched: false, // Remove the notch border
               }}
@@ -127,7 +127,7 @@ export default function AdminLogin() {
               Forget Password
             </a>
           </div> */}
-            <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
+            <Typography variant="body2" align="right" style={{ color: "black", fontSize: "16px" }}>
               <a href="/Admin/forget" className="font-size-3 text-dodger line-height-reset" style={{ color: "black" }}>
                 Forgot Password
               </a>

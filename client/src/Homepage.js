@@ -181,6 +181,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { Button } from "antd";
+
+
 
 function App(props) {
   const [selectedOption, setSelectedOption] = useState("");
@@ -200,101 +203,73 @@ function App(props) {
   }, []);
 
   return (
-    <>
-      <div className="container">
-        {/* <nav
-          style={{
-           height:200px
-            top: 0,
-            right: "30px",
-            padding: "80px",
-          
-          }}
-        > */}
-          {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="demo-select-small-label">Age</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={selectedOption}
-              label="Age"
-              onChange={handleOptionChange}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value="/adminlogin">Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl> */}
 
-<div 
-// className="background"
->
-     
-        <div className="options">
-        <h2>Select an Option</h2>
-        <div className="options-container">
+
+    <div className="outer">
+
+
+  
+
+    <div class="containers">
+    {/* <!-- Left Side: Truck Image with Overlay Text --> */}
+    
+      
+      
+
+   
+    
+      
+      
+    </div>
+       <div class="image-overlay">
+        {/* <img src="./image/trucks.jpeg" alt="Truck Image" />  */}
+        {/* <div class="overlay-text"> */}
+          <h1 style={{alignContent:'center',textAlign:'center', color:'red'}} >Lorry Management System</h1>
+          <p style={{alignContent:'center',textAlign:'center'}}>Efficiently manage your fleet with our advanced system.</p>
+        {/* </div> */}
+        <div class="login-options">
+       <div class="design">
+        
+        <h2 style={{alignContent:'center',textAlign:'center',color:'black'}}>Choose Login Option </h2>
+        {/* <div className="options">
           <label className="option">
-            <input
-              type="radio"
+            <Button
+              placeholder="Admin"
               value="/adminlogin"
               checked={selectedOption === 'organization'}
               onChange={handleOptionChange}
             />
-            Organization
+            
           </label>
+          <br/>
           <label className="option">
-            <input
-              type="radio"
+            <Button
+
+              placeholder="User"
              value="/userlogin"
               checked={selectedOption === 'member'}
               onChange={handleOptionChange}
             />
-            Member
-          </label>
-        </div>
-        <div className="selected-option">
-         
-
-      </div>
-      </div>
-    </div>
-
-
-          {/* <select
-            value={selectedOption}
-            onChange={handleOptionChange}
-            style={{ backgroundColor: "white", borderRadius: "10px", height:"30px", width:"250px" }}
-          >
-            <option value="" disabled>
-              Social
-            </option>
-            <optgroup label="E-receipt ">
-              <option value="/adminlogin">Organization</option>
-              <option value="/userlogin">Member</option>
-            </optgroup>
-           
-          </select> */}
-          {/* &nbsp; &nbsp; */}
-          {/* <select
-            value={selectedOption}
-            onChange={handleOptionChange}
-            style={{ backgroundColor: "white", borderRadius: "10px" }}
-          >
-            <option value="" disabled>
-              Sales Portal
-            </option>
-           
-            <option value="/partnerlogin">Partner</option>
-            <option value="/partner/admin">Admin</option>
-
             
-          </select> */}
+          </label>
+        </div> */}
+
+         <div class="buttons">
+            <Button class="organisation" onClick={() => navigate("/adminlogin")}style={{width:"200px",height:"50px"}}>Organisation</Button>
+            <Button class="member" onClick={() => navigate("/userlogin")}style={{width:"200px",height:"50px"}}>Member</Button>
+          </div>
+        </div>
         
-      </div>
-    </>
+        </div>
+       </div>
+       
+    <footer className="footer">
+      <p>For more information or query contact  <a href="http://www.bharat-online.com" target="_blank">
+            www.bharat-online.com</a></p>
+    </footer>
+    
+    </div>
+  
   );
 }
 

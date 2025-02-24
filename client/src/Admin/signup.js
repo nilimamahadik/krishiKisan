@@ -67,8 +67,8 @@ const AdminSignUp = () => {
   return (
     <div className="background">
       <Container component="main" maxWidth="xs" >
-        <div>
-          {/* <Typography variant="h5">Registration</Typography> */}
+        <div className="imageoverlay">
+          <Typography variant="h5">Registration</Typography> 
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
@@ -80,14 +80,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -101,14 +101,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -123,14 +123,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -145,14 +145,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -167,14 +167,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -189,14 +189,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -211,14 +211,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -234,14 +234,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -256,14 +256,14 @@ const AdminSignUp = () => {
               margin="normal"
               InputProps={{
                 style: {
-                  border: "1px solid white", // White border
+                  border: "1px solid black", // black border
                   borderRadius: "10px", // Border radius
-                  color: "white", // Text color
+                  color: "black", // Text color
                 },
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Label color
+                  color: "black", // Label color
                 },
               }}
             />
@@ -272,8 +272,8 @@ const AdminSignUp = () => {
               Sign Up
             </Button>
 
-            <Typography align="right" style={{ color: "white", fontSize: "16px" }}>
-              Already have an account? <a href="/adminlogin" style={{ color: "white" }}>Log In</a>
+            <Typography align="right" style={{ color: "black", fontSize: "16px" }}>
+              Already have an account? <a href="/adminlogin" style={{ color: "black" }}>Log In</a>
             </Typography>
           </form>
         </div>

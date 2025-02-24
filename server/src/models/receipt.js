@@ -190,8 +190,7 @@ const productSchema = new mongoose.Schema({
   rate: { type: Number, trim: true },
   total_freight: { type: Number, trim: true},
   advance_paid:{ type: Number, trim: true},
-
-  to_pay: { type: Number, trim: true}
+ to_pay: { type: Number, trim: true}
 
 }, { _id: false });
 
@@ -231,6 +230,7 @@ const applySchema = new mongoose.Schema(
     total_freight: { type: String,  trim: true }, // Changed to Number
     advance_paid: { type: String,  trim: true }, // Changed to Number
     to_pay: { type: String,  trim: true }, // Changed to Number
+    rate : { type: String,  trim: true },
 
     receipt_number: { type: String,  trim: true },
     invoice_number: { type: String,  trim: true },
@@ -240,7 +240,8 @@ const applySchema = new mongoose.Schema(
     sc: { type: Number,  trim: true }, // Changed to Number
     hamali: { type: Number,  trim: true }, // Changed to Number
     sch: { type: Number,  trim: true }, // Changed to Number
-    total: { type: Number,  trim: true }, // Changed to Number
+
+    weight: {type:Number,    trim:true},
 
     group_id: { type: String, trim: true },
     receiver: { type: String, trim: true },

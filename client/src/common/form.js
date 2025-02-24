@@ -261,7 +261,7 @@ const FormDataInfo = ({
                         </Row>
                     </div>
 
-                    <h5>Consignor Details</h5>
+                    <h5>Consignee Details</h5>
                     <div className='custom-container'>
                         <Row gutter={16} style={{ display: 'flex', flexWrap: 'nowrap' }}>
                             {/* Student Name */}

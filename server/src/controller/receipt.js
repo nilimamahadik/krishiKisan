@@ -95,18 +95,17 @@ exports.submit_form = async (req, res) => {
             group_id: group_id?.trim(),
             receiver: receiver ? receiver.trim() : "",
             //changes by dhawal
-            // description:description ? description.trim() : "",
-            // uom:uom ? uom.trim() : "",
-            
-            rate: rate || 0,
-            quantity:quantity || 0,
+            description:description ? description.trim() : "",
+            uom:uom ? uom.trim() : "",
+            rate: rate? rate.trim():"",
+            quantity:quantity ? quantity.trim():"",
             total_amount:total_amount ? total_amount.trim() : "",
             sc:sc ? sc.trim() : "",
             hamali:hamali ? hamali.trim() : "",
             sch:sch ? sch.trim() : "",
             total:total ? total.trim() : "",
-            to_pay: to_pay || 0,
-            advance_paid:advance_paid || 0,
+            to_pay: to_pay ? to_pay.trim() : "",
+            advance_paid:advance_paid ? advance_paid.trim() : "",
 
             //changes by dhawal end
            

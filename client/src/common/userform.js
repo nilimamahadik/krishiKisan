@@ -77,16 +77,16 @@ const FormDataInfoUser = ({
     
         if (savedUser) {
     
-          const parsedUser = JSON.parse(savedUser);
+        const parsedUser = JSON.parse(savedUser);
     
-          setUsers(parsedUser);
+        setUsers(parsedUser);
     
         }
         else {
-          navigate("/");
+        navigate("/");
         }
     
-      }, []);
+    }, []);
     const getMaster = async () => {
 
         const get = axios.get(`${BASEURL}/get/master`)
@@ -276,7 +276,7 @@ const FormDataInfoUser = ({
                         </Row>
                     </div>
 
-                    <h5>Consignor Details</h5>
+                    <h5>Consignee Details</h5>
                     <div className='custom-container'>
                         <Row gutter={16} style={{ display: 'flex', flexWrap: 'nowrap' }}>
                             {/* Student Name */}

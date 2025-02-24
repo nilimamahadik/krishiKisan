@@ -2,11 +2,12 @@
 
 /* Default background image for web */
 .background-container {
-    background-image: url("../image/new1.png");
+    background-image: url("../image/trucks.jpeg");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     height: 110vh;
+   
     
   }
   
@@ -36,4 +37,29 @@
   .custom-input input::placeholder {
     color: white; /* Set white placeholder text color */
   }
+  .imageoverlay{
+    background-color: rgb(205, 225, 243);
+    position: absolute;
+    width: 400px;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+
+  }
+  .imageoverlays{
+    background-color: rgb(178, 205, 230);
+    position: absolute;
+    width: 400px;
+    margin-top: 30px;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+
+  }
+
+  
   

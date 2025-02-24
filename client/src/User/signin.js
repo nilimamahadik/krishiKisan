@@ -76,8 +76,8 @@ const UserLogin = () => {
           justifyContent: "center",
           minHeight: "80vh", // Center vertically
         }}>
-        <div>
-          <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "white" }}>Login</Typography>
+        <div className="imageoverlay">
+          <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "black" }}>Login</Typography>
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
@@ -89,18 +89,18 @@ const UserLogin = () => {
               InputProps={{
                 style: {
                   borderRadius: "10px", // Set the border radius
-                  color: "white",
+                  color: "black",
                 },
                 notched: false, // Remove the notch border
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Set the label color to white
+                  color: "black", // Set the label color to black
                 },
               }}
               sx={{
                 "& fieldset": {
-                  borderColor: "white", // Set the border color to white
+                  borderColor: "black", // Set the border color to black
                 },
               }}
             />
@@ -114,24 +114,24 @@ const UserLogin = () => {
               InputProps={{
                 style: {
                   borderRadius: "10px", // Set the border radius
-                  color: "white",
+                  color: "black",
                 },
                 notched: false, // Remove the notch border
               }}
               InputLabelProps={{
                 style: {
-                  color: "white", // Set the label color to white
+                  color: "black", // Set the label color to black
                 },
               }}
               sx={{
                 "& fieldset": {
-                  borderColor: "white", // Set the border color to white
+                  borderColor: "black", // Set the border color to black
                 },
               }}
             />
 
-            <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
-              <a href="/User/forget" className="font-size-3 text-dodger line-height-reset" style={{ color: "white" }}>
+            <Typography variant="body2" align="right" style={{ color: "black", fontSize: "16px" }}>
+              <a href="/User/forget" className="font-size-3 text-dodger line-height-reset" style={{ color: "black" }}>
                 Forgot Password
               </a>
             </Typography>
@@ -141,8 +141,8 @@ const UserLogin = () => {
               </Button>
             </div>
 
-            <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
-              Don't have an account?<a href="/usersignup" style={{ color: "white" }}> Sign up</a>
+            <Typography variant="body2" align="right" style={{ color: "black", fontSize: "16px" }}>
+              Don't have an account?<a href="/usersignup" style={{ color: "black" }}> Sign up</a>
             </Typography>
           </form>
         </div>

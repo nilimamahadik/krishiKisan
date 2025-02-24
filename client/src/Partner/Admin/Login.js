@@ -65,7 +65,12 @@ const PartnerAdminLogin = (props) => {
           minHeight: "80vh", // Center vertically
         }}
       >
-        <div>
+        <div style={{
+          width:"300px",
+          height: "400px",
+          backgroundColor:"f4f4f4",
+          padding: "20px",
+        }}>
           <Typography
             variant="h5"
             style={{ textAlign: "center", fontSize: "30px", color: "white" }}
@@ -175,4 +180,3 @@ const mapStateToProps = (state) => {
     bindActionCreators({ requestAdminLogin }, dispatch);
   
   export default connect(mapStateToProps, mapDispatchToProps)(PartnerAdminLogin);
-  
