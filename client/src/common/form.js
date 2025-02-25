@@ -109,7 +109,7 @@ const FormDataInfo = ({
         if (userConfirmed) {
             const formData = new FormData();
 
-
+            formData.append("from", values.from);
             formData.append("transport_number", values.transport_number);
             formData.append("transport_driver_name", values.transport_driver_name)
             formData.append("transport_mode", values.transport_mode)
@@ -126,7 +126,7 @@ const FormDataInfo = ({
             formData.append("sch", values.sch)
             formData.append("total", values.total)
             formData.append("group_id", params.id)
-        
+
             // formData.append("createdBy", values.user.id);
             // formData.append("createdByName", values.user.name);
             console.log(...formData.entries());
@@ -135,6 +135,7 @@ const FormDataInfo = ({
 
                 const response = await axios.post(`${BASEURL}/submit`, formData);
                 getallusers();
+                handleClose();
                 alert(response.data.message)
                 return response;
             } catch (err) {
@@ -147,16 +148,30 @@ const FormDataInfo = ({
 
     }
 
-
-
-
-
-
     const onFinishFailed = (errorInfo) => {
         // setLoader(false);
         alert("Please fill in the mandatory fields!")
         console.log("Failed:", errorInfo);
     };
+
+    const handleValuesChange = (changedValues, allValues) => {
+        const productDetails = allValues.productDetails || [];
+
+        // Loop through productDetails and calculate total_freight
+        const updatedDetails = productDetails.map((product, index) => {
+            if (product.weight && product.rate) {
+                return {
+                    ...product,
+                    total_freight: (parseFloat(product.weight) || 0) * (parseFloat(product.rate) || 0),
+                };
+            }
+            return product;
+        });
+        console.log(updatedDetails);
+
+        modalForm.setFieldsValue({ productDetails: updatedDetails });
+    };
+
     return (
         <Modal
             open={open}
@@ -176,6 +191,7 @@ const FormDataInfo = ({
                 <Form
                     form={modalForm}
                     className="custom-form"
+                    onValuesChange={handleValuesChange}
                     name="basic"
                     labelCol={{
                         span: 24,

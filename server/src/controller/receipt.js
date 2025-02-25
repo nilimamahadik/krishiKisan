@@ -4,15 +4,10 @@ const receipt = require("../models/receipt");
 
 
 exports.submit_form = async (req, res) => {
-    console.log("req", req.body);
+    // console.log("req", req.body);
 
     try {
-        // const date = new Date().toLocaleDateString("en-US", {
-        //     weekday: "long",
-        //     month: "long",
-        //     day: "numeric",
-        //     year: "numeric",
-        // });
+
         const date = new Date();
         const formattedDate = date.toISOString().split("T")[0].replace(/-/g, ""); // YYYYMMDD
 
@@ -25,26 +20,22 @@ exports.submit_form = async (req, res) => {
             transport_mode,
             transport_number,
             transport_driver_name,
-            product_name,
-            product_code,
             productDetails,
             total_freight,
             advance_paid,
             to_pay,
 
+            sc,
+            hamali,
+            sch,
+            total,
+            from,
             group_id,
             receiver
         } = req.body;
 
         const parsed_productdetails = productDetails && JSON.parse(productDetails)
-        // if (!vendor_name || !address || !group_id) {
-        //     return res.status(400).json({
-        //         status: "error",
-        //         message: "All required fields (name, address, amount, group_id) must be filled",
-        //     });
-        // }
 
-        // Trim values to prevent duplicate records with spaces
         const existingReceipt = await receipt.findOne({
             vendor_name: vendor_name?.trim(),
             group_id: group_id?.trim(),
@@ -56,13 +47,19 @@ exports.submit_form = async (req, res) => {
             });
         }
 
-        const lastReceipt = await receipt.findOne({ receipt_no: new RegExp(`RCT-${formattedDate}-`, "i") })
-            .sort({ tran_date: -1 }) // Get the latest receipt for the current day
+
+
+
+        const lastReceipt = await receipt.findOne({ receipt_number: new RegExp(`KSC-${formattedDate}-`, "i") })
+            .sort({ tran_date: -1 })
             .exec();
+
+        // console.log("Last Receipt Found:", lastReceipt);  // Debug log
 
         let nextCounter = 1;
         if (lastReceipt) {
-            const lastNumber = parseInt(lastReceipt.receipt_no.split("-")[2], 10);
+            const lastNumber = parseInt(lastReceipt.receipt_number.split("-")[2], 10);
+            console.log("Last Number Extracted:", lastNumber); // Debug log
             nextCounter = lastNumber + 1;
         }
 
@@ -74,12 +71,12 @@ exports.submit_form = async (req, res) => {
             receipt_number: receiptNo,
             vendor_name: vendor_name.trim(),
             address: address.trim(),
-
+            from: from ? from.trim() : "",
 
             productDetails: parsed_productdetails,
             ship_to_address1: ship_to_address1 ? ship_to_address1.trim() : "",
             ship_to_district: ship_to_district ? ship_to_district.trim() : "",
-
+            transport_mode: transport_mode ? transport_mode.trim() : "",
             supplier_name: supplier_name ? supplier_name.trim() : "",
             transport_number: transport_number ? transport_number.trim() : "",
             transport_driver_name: transport_driver_name ? transport_driver_name.trim() : "",
@@ -87,12 +84,16 @@ exports.submit_form = async (req, res) => {
             advance_paid: advance_paid || 0,
             to_pay: to_pay || 0,
 
+            sc: sc || 0,
+            hamali: hamali || 0,
+            sch: sch || 0,
+            total: total || 0,
             group_id: group_id?.trim(),
             receiver: receiver ? receiver.trim() : "",
         });
 
         const savedReceipt = await newReceipt.save();
-        console.log("savedReceipt", savedReceipt);
+        // console.log("savedReceipt", savedReceipt);
 
         return res.status(201).json({
             data: savedReceipt,
@@ -101,7 +102,7 @@ exports.submit_form = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        
+
         console.error("Error saving receipt:", error.message);
         return res.status(500).json({
             status: "error",
@@ -115,8 +116,8 @@ exports.getallusers = async (req, res) => {
     // console.log(req.params);
     try {
         const allusers = await receipt.find({ group_id: req.params.id }).sort({ createdAt: -1 })
-        console.log(allusers);
-        
+        // console.log(allusers);
+
         return res.status(201).json({
             data: allusers,
             status: "success",
