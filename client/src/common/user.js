@@ -174,7 +174,7 @@ function CustomTable({ data }) {
           </div>
         )),
     },
->>>>>>> 21d3bab83da5c712b7b0cda657d0cdb3aee61cb4
+
     {
       title: "Receipt",
       dataIndex: "receipt",
@@ -548,7 +548,7 @@ const FormExample = () => {
          </Container>
         <Box display="flex" justifyContent="center" alignItems="center" style={{ marginTop: "40px" }} >
           {/* <h2><u>Contributors</u></h2> */}
-          <Button variant="contained" type="submit" style={{ marginRight: "10px" }} onClick={handleGraceMarks}> Generate   + </Button>
+          <Button variant="contained" type="submit" style={{ marginRight: "10px", marginLeft:"200px" }} onClick={handleGraceMarks}> Generate   + </Button>
         </Box>
 
         <Box display="flex" justifyContent="center" alignItems="center" margin="10px" >

@@ -111,8 +111,8 @@ const Poster = (props) => {
   return (
 
 
-
     <>
+    <div style={{paddingBottom:"100px"}}>
       <Box textAlign="center" sx={{ mb: 3 }}>
 
       </Box>
@@ -154,8 +154,8 @@ const Poster = (props) => {
                         setColumns((prev) => ({ ...prev, [key]: !prev[key] }))
                       }
                       sx={{
-                        color: "#c11c84",
-                        "&.Mui-checked": { color: "#c11c84" },
+                        color: "black",
+                        "&.Mui-checked": { color: "secondary" },
                       }}
                     />
                   }
@@ -172,113 +172,103 @@ const Poster = (props) => {
               >
                 Close
               </Button>
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
                   setOpen(false);
                   handlePrint();
-                }}
+                }}                                  Button comment because the it create issue.
                 sx={{
-                  backgroundColor: "#c11c84",
+                  backgroundColor: "black",
                   "&:hover": { backgroundColor: "#9a156e" },
                 }}
               >
                 Print
-              </Button>
+              </Button> */}
             </Box>
           </Box>
         </Fade>
       </Modal>
       <br />
-      <Box sx={{ maxWidth: 800, margin: "auto", paddingLeft: 3, paddingRight: 3, paddingBottom: 3, backgroundColor: "#fff", boxShadow: 3, borderRadius: 2, color: "#c11c84", border: "2px solid #c11c84" }}>
+      <Box sx={{ maxWidth: 800, margin: "auto", paddingLeft: 3, paddingRight: 3, paddingBottom: 3, backgroundColor: "#fff", boxShadow: 3, borderRadius: 2, color: "black", border: "2px solid black" }}>
         {/* Header Section */}
-        <Typography variant="body2" align="center" >
+        {/* <Typography variant="body2" align="center" >
           Subject to Amravati Jurisdiction
-          
+        </Typography> */}
+        <Typography variant="h6" align="center" fontWeight="bold" sx={{ marginBottom: "1px",fontSize:"30px" }}>
+        {value.id}
         </Typography>
-      </Grid>
-      <Grid item xs={6} style={{ textAlign: "center" , paddingRight:"220px"}}>
-        <Typography sx={{ color: " black" }}>
-          <strong>Date:</strong> <span style={{ color:"rgba(16, 16, 16, 0.73)" }}>{formatDate(data?.createdAt)}</span>
+        {/* <Typography variant="h6" align="center" fontWeight="bold" sx={{ marginBottom: "1px" }}>
+          TRANSPORTER & C&F
+        </Typography> */}
+
+        <Typography variant="body2" align="center"sx={{ marginBottom: "1px",fontSize:"15px" }}>
+          {value.address}
         </Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Typography sx={{ color: "black" }}>
-          <strong>From:</strong> <span style={{ color:"rgba(16, 16, 16, 0.73)" }}>{data?.vendor_name}</span>
+        <Typography variant="body2" align="center">
+          Received goods as per details below for carriage Subject to condition overleaf
         </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography sx={{ color: "black" }}>
-          <strong>Driver Name:</strong>
-          <span style={{ borderBottom: "black",color:"rgba(16, 16, 16, 0.73)" }}>{data?.transport_driver_name}</span>
-        </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography sx={{ color: " black" }}>
-          <strong>Truck No:</strong>
-          <span style={{ color:"rgba(16, 16, 16, 0.73)" }}>{data?.transport_number}</span>
-        </Typography>
-        <Divider sx={{ my: 2, borderColor: "#ed0258", borderWidth: "1px" }} />
+        <Divider sx={{ my: 2, borderColor: "black", borderWidth: "1px" }} />
 
 
         {/* Details Section */}
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <Typography>
-              <strong>Receipt No:</strong> <span style={{ borderBottom: "1px dotted black" }}>{data?.receipt_number}</span>
+              <strong>Receipt No:</strong> <span style={{ borderBottom: "",color:"rgba(16, 16, 16, 0.73)" }}>{data?.receipt_number}</span>
             </Typography>
           </Grid>
-          <Grid item xs={6} textAlign="right">
+          <Grid item xs={6}  style={{ textAlign: "center" , paddingRight:"235px"}}>
             <Typography>
-              <strong>Date:</strong> <span style={{ borderBottom: "1px dotted  #ed0258" }}>{formatDate(data?.createdAt)}</span>
+              <strong>Date:</strong> <span style={{ borderBottom: "",color:"rgba(16, 16, 16, 0.73)" }}>{formatDate(data?.createdAt)}</span>
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography>
-              <strong>From:</strong> <span style={{ borderBottom: "1px dotted  #ed0258" }}>{data?.from}</span>
+              <strong>From:</strong> <span style={{ borderBottom: "" ,color:"rgba(16, 16, 16, 0.73)"}}>{data?.from}</span>
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography>
               <strong>Driver Name:</strong>{" "}
-              <span style={{ borderBottom: "1px dotted  #ed0258" }}>{data?.transport_driver_name}</span>
+              <span style={{ borderBottom: "" ,color:"rgba(16, 16, 16, 0.73)"}}>{data?.transport_driver_name}</span>
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography>
               <strong>Truck No:</strong>{" "}
-              <span style={{ borderBottom: "1px dotted  #ed0258" }}>{data?.transport_number}</span>
+              <span style={{ borderBottom: "",color:"rgba(16, 16, 16, 0.73)" }}>{data?.transport_number}</span>
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography>
               <strong>Consignor:</strong>{" "}
-              <span style={{ borderBottom: "1px dotted  #ed0258" }}>{data?.supplier_name}</span>
+              <span style={{ borderBottom: "",color:"rgba(16, 16, 16, 0.73)" }}>{data?.supplier_name}</span>
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography>
               <strong>Place:</strong>{" "}
-              <span style={{ borderBottom: "1px dotted  #ed0258" }}>{data?.address}</span>
+              <span style={{ borderBottom: "",color:"rgba(16, 16, 16, 0.73)" }}>{data?.address}</span>
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography>
               <strong>Consignee:</strong>{" "}
-              <span style={{ borderBottom: "1px dotted  #ed0258" }}>{data?.vendor_name}</span>
+              <span style={{ borderBottom: "",color:"rgba(16, 16, 16, 0.73)" }}>{data?.vendor_name}</span>
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography>
               <strong>Place:</strong>{" "}
-              <span style={{ borderBottom: "1px dotted  #ed0258" }}>{data?.ship_to_address1}</span>
+              <span style={{ borderBottom: "" ,color:"rgba(16, 16, 16, 0.73)"}}>{data?.ship_to_address1}</span>
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography>
               <strong>District:</strong>{" "}
-              <span style={{ borderBottom: "1px dotted  #ed0258" }}>{data?.ship_to_district}</span>
+              <span style={{ borderBottom: "" , color:"rgba(16, 16, 16, 0.73)" }}>{data?.ship_to_district}</span>
             </Typography>
           </Grid>
         </Grid>
@@ -287,17 +277,17 @@ const Poster = (props) => {
 
 
      
-        <TableContainer component={Paper} sx={{ mt: 2, borderRadius: 2, boxShadow: 2 }}>
+        <TableContainer component={Paper} sx={{ mt: 2, borderRadius:0, boxShadow: 2 }}>
           <Table>
-            <TableHead sx={{ backgroundColor: "#ed0258" }}>
+            <TableHead sx={{ backgroundColor: "white",boxShadow:5 }}>
               <TableRow>
-                {columns.description && <TableCell sx={{ color: "white", fontWeight: "bold", padding: "8px" }}>Description</TableCell>}
-                {columns.articles && <TableCell sx={{ color: "white", fontWeight: "bold", padding: "8px" }}>No. of Articles</TableCell>}
-                {columns.weight && <TableCell sx={{ color: "white", fontWeight: "bold", padding: "8px" }}>Weight</TableCell>}
-                {columns.rate && <TableCell sx={{ color: "white", fontWeight: "bold", padding: "8px" }}>Rate</TableCell>}
-                {columns.totalFreight && <TableCell sx={{ color: "white", fontWeight: "bold", padding: "8px" }}>Total Freight</TableCell>}
-                {columns.advance && <TableCell sx={{ color: "white", fontWeight: "bold", padding: "8px" }}>Advance</TableCell>}
-                {columns.toPay && <TableCell sx={{ color: "white", fontWeight: "bold", padding: "8px" }}>To Pay</TableCell>}
+                {columns.description && <TableCell sx={{ color: "black", fontWeight: "bold", padding: "8px" }}>Description</TableCell>}
+                {columns.articles && <TableCell sx={{ color: "black", fontWeight: "bold", padding: "8px" }}>No. of Articles</TableCell>}
+                {columns.weight && <TableCell sx={{ color: "black", fontWeight: "bold", padding: "8px" }}>Weight</TableCell>}
+                {columns.rate && <TableCell sx={{ color: "black", fontWeight: "bold", padding: "8px" }}>Rate</TableCell>}
+                {columns.totalFreight && <TableCell sx={{ color: "black", fontWeight: "bold", padding: "8px" }}>Total Freight</TableCell>}
+                {columns.advance && <TableCell sx={{ color: "black", fontWeight: "bold", padding: "8px" }}>Advance</TableCell>}
+                {columns.toPay && <TableCell sx={{ color: "black", fontWeight: "bold", padding: "8px" }}>To Pay</TableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -336,111 +326,20 @@ const Poster = (props) => {
         {/* Footer Section */}
         <Typography variant="body2" align="center">
           दोन प्रतिवर खर स्टैम्प व सहीनिशी पोहोच देणे ७ दिवसाच्या आत पोहोच न आल्यास भाडे मिळणार नाही.
-
         </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography sx={{ color: " black" }}>
-          <strong>Place:</strong>
-          <span style={{ color:"rgba(16, 16, 16, 0.73)" }}>{data?.address}</span>
+        <Typography variant="body2" align="center">
+          We have carefully read the terms and conditions of the back here and we undertake to abide by the said terms and conditions.
         </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography sx={{ color: " black" }}>
-          <strong>Consignee:</strong>{" "}
-          <span style={{ color:"rgba(16, 16, 16, 0.73)" }}>{data?.vendor_name}</span>
-        </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography sx={{ color: " black" }}>
-          <strong>Place:</strong>{" "}
-          <span style={{ color:"rgba(16, 16, 16, 0.73)"}}>{data?.ship_to_address1}</span>
-        </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography sx={{ color: " black" }}>
-          <strong>District:</strong>{" "}
-          <span style={{ color:"rgba(16, 16, 16, 0.73)" }}>{data?.ship_to_district}</span>
-        </Typography>
-      </Grid>
-    </Grid>
 
-    {/* Table Section */}
-    <TableContainer component={Paper} style={{ marginTop: "5px" }}>
-      <Table>
-        <TableHead sx={{ backgroundColor: "white" }}>
-          <TableRow>
-            <TableCell sx={{ color: " black", fontWeight: "bold", padding: "6px",alignItems:"center",justifyContent:"center" }}>Description</TableCell>
-            <TableCell sx={{ color: "black", fontWeight: "bold", padding: "6px" }}>No. of Articles</TableCell>
-            <TableCell sx={{ color: "black", fontWeight: "bold", padding: "6px" }}>Weight</TableCell>
-            <TableCell sx={{ color: "black", fontWeight: "bold", padding: "6px" }}>Rate</TableCell>
-            <TableCell sx={{ color: "black", fontWeight: "bold", padding: "6px" }}>Total Freight</TableCell>
-            <TableCell sx={{ color: "black", fontWeight: "bold", padding: "6px" }}>Advance</TableCell>
-            <TableCell sx={{ color: "black", fontWeight: "bold", padding: "6px" }}>To Pay</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>{data?.product_name}</TableCell>
-            <TableCell>{data?.uom}</TableCell>
-            <TableCell>{data?.weight}</TableCell>
-            <TableCell>{data?.rate}</TableCell>
-            <TableCell>{data?.total_freight}</TableCell>
-            <TableCell>{data?.advance_paid}</TableCell>
-            <TableCell>{data?.to_pay}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-    <Divider sx={{ my: 2 }} />
-
-    {/* Payment Section */}
-    <Grid container spacing={2}>
-      <Grid item xs={6}><Typography sx={{ color: "black" }}><strong>S.C:</strong>{data?.sc}</Typography></Grid>
-      <Grid item xs={6}><Typography sx={{ color: " black" }}><strong>Hamali:</strong>{data?.hamali}</Typography></Grid>
-      <Grid item xs={6}><Typography sx={{ color: "black" }}><strong>S.Ch:</strong>{data?.sch }</Typography></Grid>
-      <Grid item xs={6}><Typography sx={{ color: "black" }}><strong>Total:</strong>{data?.total}</Typography></Grid>
-    </Grid>
-
-    <Divider sx={{ my: 2, borderColor: "#ff0000", borderWidth: "1px" }} />
-
-    {/* Footer Section */}
-    <Typography variant="body2" align="center" sx={{ color: "#ff0000" }}>
-      दोन प्रतिवर खर स्टैम्प व सहीनिशी पोहोच देणे ७ दिवसाच्या आत पोहोच न आल्यास भाडे मिळणार नाही.
-    </Typography>
-    <Typography variant="body2" align="center" sx={{ color: "#ff0000" }}>
-      We have carefully read the terms and conditions of the back here and we undertake to abide by the said terms and conditions.
-    </Typography>
-
-    <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
-      <Typography variant="body2" sx={{ color: " black" }}><strong>Driver Signature:</strong> __________</Typography>
-      <Typography variant="body2" sx={{ color: "black" }}><strong>For: Kisan Seeds Corporation</strong></Typography>
-    </Box>
-  </Box>
-  <Box sx={{ textAlign: "center", mt: 3 }}>
-    <Button variant="contained" color="primary" onClick={() => navigate(-1)}>
-      Back
-    </Button>
-    <Button variant="contained" color="primary" onClick={handlePrint} disabled={isButtonDisabled} style={{ marginLeft: "3px" }}>Print </Button>
-  </Box>
-</>
-
-
-
-
-
-
-
-
-
-
-
-
+        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
+          <Typography variant="body2"><strong>Driver Signature:</strong> __________</Typography>
+          <Typography variant="body2"><strong>For: {value.id}</strong></Typography>
+        </Box>
 
 
       </Box>
-      <Box sx={{ textAlign: "center", mt: 3 }}>
+      <div className='no-print'>
+      <Box sx={{ textAlign: "center", mt: 3 ,  marginBottom: "300px", }}>
         <Button variant="contained" color="primary" onClick={() => navigate(-1)}>
           Back
         </Button>
@@ -448,9 +347,11 @@ const Poster = (props) => {
           style={{ marginLeft: "3px" }}
           variant="contained"
           color="primary"
+          marginBottom= "300px"
+        
           onClick={() => setOpen(true)}
         // sx={{
-        //   backgroundColor: "#c11c84",
+        //   backgroundColor: "black",
         //   "&:hover": { backgroundColor: "#9a156e" },
         //   px: 3,
         //   py: 1,
@@ -461,8 +362,9 @@ const Poster = (props) => {
         <Button variant="contained" color="primary" onClick={handlePrint} disabled={isButtonDisabled} style={{ marginLeft: "3px" }}>Print </Button>
 
       </Box>
+      </div>
+      </div>
     </>
-
   );
 };
 

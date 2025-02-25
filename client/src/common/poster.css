@@ -227,4 +227,9 @@ body {
 .signature-text {
   color: #060101;
 }
+@media print {
+  .no-print {
+      display: none !important;
+  }
+}
 

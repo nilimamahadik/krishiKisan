@@ -134,7 +134,7 @@ const UserSignUp = () => {
                 },
               }}
             />
-            <p style={{fontSize:"10px", textAlign:"right"}}>For company code. Please contact officials. </p>
+            <p style={{fontSize:"10px", textAlign:"right"}}>For company code. Please contact company officials. </p>
 
             <TextField
               fullWidth

@@ -36,12 +36,12 @@ position: center;
 }
 
 Background image for mobile (less than 400 pixels) */
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .container {
         background-image: url('./image/frontpage.jpg');
     }
-} */
-/* 
+} 
+
 
 
 /* General Styles */
@@ -57,8 +57,12 @@ html #root {
 .outer{
   height: 100%;
   width: 100%;
+  object-fit: cover;
+  background-image: url('./image/trucks.jpeg');  
+  justify-content: center; 
+  background-repeat: no-repeat ;
   flex-direction: column;
-  display: block;
+  /* display: block; */
 }
 
 .containers {
@@ -93,14 +97,13 @@ html #root {
   
   box-shadow: 0 10px 20px rgba(0 ,0,0,0.3);
   width: 30%;
-  background-color: #f4f4f4;
-  height: 100vh;
+  background-color: #f4f4f4; 
   margin-top: 200px;
   box-shadow: brown;
    float: right;
   border-radius: 20px;
   padding: 50px;
-  margin-bottom: 40px;
+  margin-bottom: 400px;
   
   
   
@@ -219,9 +222,9 @@ h2{
     padding-top: 80px;
     font-size: 30px;
 }
-image{
+/* image{
   background-image: url('./image/truck.jpeg');
-}
+} */
 .option{
   font-size: medium;
 }

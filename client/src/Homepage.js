@@ -255,8 +255,8 @@ function App(props) {
         </div> */}
 
          <div class="buttons">
-            <Button class="organisation" onClick={() => navigate("/adminlogin")}style={{width:"200px",height:"50px"}}>Organisation</Button>
-            <Button class="member" onClick={() => navigate("/userlogin")}style={{width:"200px",height:"50px"}}>Member</Button>
+            <Button class="organisation" onClick={() => navigate("/adminlogin")}style={{width:"200px",height:"50px"}}>Company Admin</Button>
+            <Button class="member" onClick={() => navigate("/userlogin")}style={{width:"200px",height:"50px"}}>Employee</Button>
           </div>
         </div>
         

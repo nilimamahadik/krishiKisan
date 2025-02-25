@@ -25,10 +25,7 @@ exports.submit_form = async (req, res) => {
             rate,
             quantity,
             total_amount,
-            sc,
-            hamali,
-            sch,
-            total,
+            uom,
             to_pay,
             advance_paid,
         
@@ -103,8 +100,8 @@ exports.submit_form = async (req, res) => {
 
             group_id: group_id?.trim(),
             receiver: receiver ? receiver.trim() : "",
-            //changes by dhawal
-            description:description ? description.trim() : "",
+            
+            // description:description ? description.trim() : "",
             uom:uom ? uom.trim() : "",
             rate: rate? rate.trim():"",
             quantity:quantity ? quantity.trim():"",
@@ -116,7 +113,7 @@ exports.submit_form = async (req, res) => {
             to_pay: to_pay ? to_pay.trim() : "",
             advance_paid:advance_paid ? advance_paid.trim() : "",
 
-            //changes by dhawal end
+            
            
            
            
