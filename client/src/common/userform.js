@@ -34,11 +34,11 @@ const FormDataInfoUser = ({
 }) => {
     const { TextArea } = Input;
     const { Title } = Typography;
-
+    const [form] = Form.useForm();
     const [data, setData] = useState([])
     const [users, setUsers] = useState({})
     const [master, setMaster] = useState([])
-    console.log(master);
+    // // console.log(master);
 
     const [value, setValue] = useState({})
     const navigate = useNavigate();
@@ -46,36 +46,23 @@ const FormDataInfoUser = ({
     const [file, setFile] = useState();
     const [projectOptions, setProjectOptions] = useState([]);
     const [openUser, setOpenUser] = useState(false)
-    // console.log(graceEligibleStudents)
+    // // console.log(graceEligibleStudents)
     const params = useParams()
-    // const onClickLoading = () => {
-    //     setLoader(true);
-    // };
 
 
-    console.log("Form Values:", modalForm.getFieldsValue());
+    // console.log("Form Values:", modalForm.getFieldsValue());
 
-    // console.log(modalForm.getFieldsValue());
     const handleUserClose = () => {
         setOpenUser(false); // Close modal
     };
-    // useEffect(() => {
-    //     const savedInfo = localStorage.getItem("info");
-    //     if (savedInfo) {
-    //         const parsedInfo = JSON.parse(savedInfo);
-    //         setValue(parsedInfo);
-    //     }
-    //     else {
-    //         navigate("/");
-    //     }
 
-    // }, []);
 
     useEffect(() => {
 
         const savedUser = localStorage.getItem("link");
-    
+
         if (savedUser) {
+
     
         const parsedUser = JSON.parse(savedUser);
     
@@ -86,17 +73,18 @@ const FormDataInfoUser = ({
         navigate("/");
         }
     
+
     }, []);
     const getMaster = async () => {
 
         const get = axios.get(`${BASEURL}/get/master`)
             .then((res) => {
                 setMaster(res.data.data);
-                //  console.log(res.data);
+                //  // console.log(res.data);
                 localStorage.setItem("count", JSON.stringify(res.data));
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
             })
     }
     const getallusers = async () => {
@@ -104,11 +92,11 @@ const FormDataInfoUser = ({
         const get = axios.get(`${BASEURL}/getallusers/${params.id}`)
             .then((res) => {
                 setData(res.data.data);
-                //  console.log(res.data);
+                //  // console.log(res.data);
                 localStorage.setItem("count", JSON.stringify(res.data));
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
             })
     }
     useEffect(() => {
@@ -117,14 +105,14 @@ const FormDataInfoUser = ({
     }, []);
 
     const onFinish = async (values) => {
-        console.log(values)
+        // console.log(values)
         const userConfirmed = window.confirm(
             "Are you sure you want to proceed with the action?"
         );
         if (userConfirmed) {
             const formData = new FormData();
 
-
+            formData.append("from", values.from);
             formData.append("transport_number", values.transport_number);
             formData.append("transport_driver_name", values.transport_driver_name)
             formData.append("transport_mode", values.transport_mode)
@@ -141,37 +129,58 @@ const FormDataInfoUser = ({
             formData.append("sch", values.sch)
             formData.append("total", values.total)
             formData.append("group_id", params.id)
-        
+
             // formData.append("createdBy", values.user.id);
             // formData.append("createdByName", values.user.name);
-            console.log(...formData.entries());
+            // // console.log(...formData.entries());
 
             try {
 
                 const response = await axios.post(`${BASEURL}/submit`, formData);
+
                 getallusers();
+                handleClose();
                 alert(response.data.message)
                 return response;
             } catch (err) {
-                console.log(err);
+                // console.log(err);
 
                 alert(err.response.data.message)
-                console.log(err);
+                // console.log(err);
             }
         }
 
     }
 
-
-
-
-
-
     const onFinishFailed = (errorInfo) => {
         // setLoader(false);
         alert("Please fill in the mandatory fields!")
-        console.log("Failed:", errorInfo);
+        // console.log("Failed:", errorInfo);
     };
+
+        const handleValuesChange = (changedValues, allValues) => {
+            const productDetails = allValues.productDetails || [];
+
+            // Loop through productDetails and calculate total_freight
+            const updatedDetails = productDetails.map((product, index) => {
+                if (product.weight && product.rate) {
+                    return {
+                        ...product,
+                        total_freight: (parseFloat(product.weight) || 0) * (parseFloat(product.rate) || 0),
+                    };
+                }
+                return product;
+            });
+            console.log(updatedDetails);
+
+            modalForm.setFieldsValue({ productDetails: updatedDetails });
+        };
+
+    // console.log(modalForm.getFieldsValue());
+
+   
+    
+
     return (
         <Modal
             open={open}
@@ -190,6 +199,7 @@ const FormDataInfoUser = ({
 
                 <Form
                     form={modalForm}
+                    onValuesChange={handleValuesChange}
                     className="custom-form"
                     name="basic"
                     labelCol={{
@@ -402,7 +412,7 @@ const FormDataInfoUser = ({
                                                         label={index === 0 ? 'Weight' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter Weight!' }]}
                                                     >
-                                                        <Input size="medium" placeholder=" enter Weight" />
+                                                        <Input type="number" size="medium" placeholder=" enter Weight" />
                                                     </Form.Item>
                                                 </Col>
                                                 <Col style={{ flex: 1 }}>
@@ -414,21 +424,21 @@ const FormDataInfoUser = ({
                                                         label={index === 0 ? 'Rate' : null} // Show label only for the first row
                                                         rules={[{ required: true, message: 'Please enter Rate!' }]}
                                                     >
-                                                        <Input size="medium" placeholder="enter Rate" />
+                                                        <Input type="number" size="medium" placeholder="enter Rate" />
                                                     </Form.Item>
                                                 </Col>
                                                 <Col style={{ flex: 1 }}>
                                                     <Form.Item
-                                                        style={{ marginBottom: '5px' }}
                                                         {...restField}
                                                         name={[name, 'total_freight']}
                                                         fieldKey={[fieldKey, 'total_freight']}
-                                                        label={index === 0 ? 'Total Freight' : null} // Show label only for the first row
+                                                        label={index === 0 ? 'Total Freight' : null}
                                                         rules={[{ required: true, message: 'Please enter Total Freight!' }]}
                                                     >
-                                                        <Input size="medium" placeholder="Enter Total Freight" />
+                                                        <Input placeholder="Total Freight" />
                                                     </Form.Item>
                                                 </Col>
+
 
                                                 <Col style={{ flex: 1 }}>
                                                     <Form.Item

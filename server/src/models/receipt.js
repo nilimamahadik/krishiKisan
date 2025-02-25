@@ -185,12 +185,13 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
   product_name: { type: String, trim: true },
   product_code: { type: Number, trim: true },
-  uom: { type: String, trim: true},
+  uom: { type: String, trim: true },
   weight: { type: String, trim: true },
   rate: { type: Number, trim: true },
-  total_freight: { type: Number, trim: true},
-  advance_paid:{ type: Number, trim: true},
- to_pay: { type: Number, trim: true}
+
+  total_freight: { type: Number, trim: true },
+  advance_paid: { type: Number, trim: true },
+  to_pay: { type: Number, trim: true }
 
 }, { _id: false });
 
@@ -198,50 +199,45 @@ const applySchema = new mongoose.Schema(
   {
     tran_id: { type: String, trim: true }, // Corrected name
     tran_date: { type: Date },
-    productDetails : [productSchema],
-
-    vendor_name: { type: String,  trim: true },
+    productDetails: [productSchema],
+    from: { type: String, trim: true },
+    vendor_name: { type: String, trim: true },
     supplier_name: { type: String, trim: true },
     address: { type: String, trim: true },
 
     // Shipping Details
-    ship_to_address1: { type: String,  trim: true },
-    ship_to_address2: { type: String,  trim: true },
-    ship_to_district: { type: String,trim: true },
+    ship_to_address1: { type: String, trim: true },
+    ship_to_address2: { type: String, trim: true },
+    ship_to_district: { type: String, trim: true },
     ship_to_city: { type: String, trim: true },
-    ship_to_state: { type: String,  trim: true },
-    ship_to_pincode: { type: Number,  trim: true }, // Changed to Number
+    ship_to_state: { type: String, trim: true },
+    ship_to_pincode: { type: Number, trim: true }, // Changed to Number
 
     // Billing Details
-    bill_to_address1: { type: String,  trim: true },
-    bill_to_address2: { type: String,  trim: true },
+    bill_to_address1: { type: String, trim: true },
+    bill_to_address2: { type: String, trim: true },
     bill_to_district: { type: String, trim: true },
     bill_to_city: { type: String, trim: true },
-    bill_to_state: { type: String,  trim: true },
+    bill_to_state: { type: String, trim: true },
     bill_to_pincode: { type: Number, trim: true }, // Changed to Number
 
     // Transport Details
     transport_mode: { type: String, trim: true },
-    transport_number: { type: String,  trim: true },
-    transport_driver_name: { type: String,  trim: true },
-    description: { type: String,  trim: true },
+
+    transport_number: { type: String, trim: true },
+    transport_driver_name: { type: String, trim: true },
 
     // Payment Details
-    total_freight: { type: String,  trim: true }, // Changed to Number
-    advance_paid: { type: String,  trim: true }, // Changed to Number
-    to_pay: { type: String,  trim: true }, // Changed to Number
-    rate : { type: String,  trim: true },
+    total_freight: { type: Number, trim: true }, // Changed to Number
+    advance_paid: { type: Number, trim: true }, // Changed to Number
+    to_pay: { type: Number, trim: true }, // Changed to Number
 
-    receipt_number: { type: String,  trim: true },
-    invoice_number: { type: String,  trim: true },
-
-    //changes by dhawal
-    total_amount: { type: Number,  trim: true }, // Changed to Number
-    sc: { type: Number,  trim: true }, // Changed to Number
-    hamali: { type: Number,  trim: true }, // Changed to Number
-    sch: { type: Number,  trim: true }, // Changed to Number
-
-    weight: {type:Number,    trim:true},
+    receipt_number: { type: String, trim: true },
+    invoice_number: { type: String, trim: true },
+    sc: { type: Number, default: 0 },
+    hamali: { type: Number, default: 0 },
+    sch: { type: Number, default: 0 },
+    total: { type: Number, default: 0 },
 
     group_id: { type: String, trim: true },
     receiver: { type: String, trim: true },

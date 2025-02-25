@@ -33,6 +33,8 @@ import {
 const BASEURL = "/api"
 
 function CustomTable({ data }) {
+  console.log(data);
+  
   const [columnItems, setColumnItems] = useState([]);
   const [columnsToShow, setColumnsToShow] = useState([]);
 
@@ -93,31 +95,69 @@ function CustomTable({ data }) {
     },
 
     {
-      title: "Product",
-      dataIndex: "product_name",
-      key: "name",
+      title: "Products",
+      key: "products",
+      render: (_, record) =>
+        record.productDetails?.map((product, index) => (
+          <div key={index} style={{ borderBottom: "1px solid #ddd", paddingBottom: "5px", marginBottom: "5px" }}>
+            {product.product_name} <br />
+
+          </div>
+        )),
     },
     {
       title: "Code",
-      dataIndex: "product_code",
-      key: "name",
+
+      key: "products",
+      render: (_, record) =>
+        record.productDetails?.map((product, index) => (
+          <div key={index} style={{ borderBottom: "1px solid #ddd", paddingBottom: "5px", marginBottom: "5px" }}>
+            {product.product_code}
+
+          </div>
+        )),
     },
+
 
     {
       title: "Total Freight",
-      dataIndex: "total_freight",
-      key: "amount"
+      key: "products",
+      render: (_, record) =>
+        record.productDetails?.map((product, index) => (
+          <div key={index} style={{ borderBottom: "1px solid #ddd", paddingBottom: "5px", marginBottom: "5px" }}>
+            {product.total_freight}
+
+          </div>
+        )),
     },
-    // {
-    //   title: "Advance",
-    //   dataIndex: "advance_paid",
-    //   key: "name",
-    // },
-    // {
-    //   title: "To Pay",
-    //   dataIndex: "to_pay",
-    //   key: "name",
-    // },
+    {
+      title: "Advance",
+      key: "products",
+      render: (_, record) =>
+        record.productDetails?.map((product, index) => (
+          <div key={index} style={{ borderBottom: "1px solid #ddd", paddingBottom: "5px", marginBottom: "5px" }}>
+
+
+
+            {product.advance_paid}
+
+          </div>
+        )),
+    },
+    {
+      title: "To Pay",
+      key: "products",
+      render: (_, record) =>
+        record.productDetails?.map((product, index) => (
+          <div key={index} style={{ borderBottom: "1px solid #ddd", paddingBottom: "5px", marginBottom: "5px" }}>
+
+
+            {product.to_pay}
+
+          </div>
+        )),
+    },
+
     {
       title: "Receipt",
       dataIndex: "receipt",
@@ -390,12 +430,7 @@ const FormExampleAdmin = (props) => {
   return (
     <>
       <div >
-        {/* <div className="card-body">
-          <Drawer />
-          </div> */}
-        {/* <div className="front" style={{ backgroundColor: "#c11c84", color: "white" , marginTop:"100px"}}>
-          <h4> Lorry Receipt</h4>
-        </div> */}
+      
 
         <Toolbar style={{ backgroundColor: "#c11c84", color: "white", alignItems: "center", justifyContent: "center",height:"100px" }} >
           <h1 style={{marginTop:"50px", padding:"10px"}}> Lorry Receipt</h1>
